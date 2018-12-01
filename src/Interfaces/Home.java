@@ -5,6 +5,9 @@
  */
 package Interfaces;
 
+import java.awt.BorderLayout;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author bx
@@ -27,24 +30,193 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1314, 908));
-        setMinimumSize(new java.awt.Dimension(1314, 908));
-        setPreferredSize(new java.awt.Dimension(1314, 908));
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        btn_Trocar_usuario = new javax.swing.JLabel();
+        btn_Vendas = new javax.swing.JLabel();
+        btn_Cad_Cliente = new javax.swing.JLabel();
+        btn_produto = new javax.swing.JLabel();
+        btn_Caixa = new javax.swing.JLabel();
+        btn_Fornecedor = new javax.swing.JLabel();
+        btn_relatorio = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        Area_Trabalho = new javax.swing.JPanel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1314, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1328, 881));
+        setMinimumSize(new java.awt.Dimension(1328, 881));
+        setResizable(false);
+        getContentPane().setLayout(null);
+
+        jPanel2.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1302, 5));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 125, 1330, 5);
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        btn_Trocar_usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/troca_usuario.png"))); // NOI18N
+        jPanel1.add(btn_Trocar_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 20, -1, -1));
+
+        btn_Vendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/vendas.png"))); // NOI18N
+        btn_Vendas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_VendasMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_VendasMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_VendasMouseEntered(evt);
+            }
+        });
+        jPanel1.add(btn_Vendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        btn_Cad_Cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/clientes.png"))); // NOI18N
+        jPanel1.add(btn_Cad_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
+
+        btn_produto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/cad_produto.png"))); // NOI18N
+        jPanel1.add(btn_produto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
+
+        btn_Caixa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/caixa_saida.png"))); // NOI18N
+        jPanel1.add(btn_Caixa, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
+
+        btn_Fornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/fornecedor.png"))); // NOI18N
+        jPanel1.add(btn_Fornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 20, -1, -1));
+
+        btn_relatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/relatorio.png"))); // NOI18N
+        jPanel1.add(btn_relatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 20, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Trocar Usuários");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 100, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Vendas");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Cadastro Produto");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Caixa / Saida / Boletos");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Vendedor / Clientes");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Fornecedores");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 100, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Relatórios");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 100, 90, -1));
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 1329, 130);
+
+        jPanel4.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1330, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 908, Short.MAX_VALUE)
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 56, Short.MAX_VALUE)
         );
+
+        getContentPane().add(jPanel4);
+        jPanel4.setBounds(0, 810, 1330, 56);
+
+        Area_Trabalho.setBackground(new java.awt.Color(255, 255, 255));
+        Area_Trabalho.setMaximumSize(new java.awt.Dimension(1330, 690));
+
+        javax.swing.GroupLayout Area_TrabalhoLayout = new javax.swing.GroupLayout(Area_Trabalho);
+        Area_Trabalho.setLayout(Area_TrabalhoLayout);
+        Area_TrabalhoLayout.setHorizontalGroup(
+            Area_TrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1330, Short.MAX_VALUE)
+        );
+        Area_TrabalhoLayout.setVerticalGroup(
+            Area_TrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 680, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(Area_Trabalho);
+        Area_Trabalho.setBounds(0, 130, 1330, 680);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_VendasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_VendasMouseEntered
+        
+        
+        
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_VendasMouseEntered
+
+    private void btn_VendasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_VendasMouseExited
+       
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_VendasMouseExited
+
+    
+    // Botão Vendas
+    private void btn_VendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_VendasMouseClicked
+        //btn_Vendas.setIcon(new ImageIcon(getClass().getResource("fornecedor.png")));
+        Tela_Vendas t_vendas = new Tela_Vendas();
+        t_vendas.setSize(1330, 690);
+        //t_vendas.setLocation(5, 5);
+      
+        
+        Area_Trabalho.removeAll();
+        Area_Trabalho.add(t_vendas, CENTER_ALIGNMENT);
+        Area_Trabalho.revalidate();
+        Area_Trabalho.repaint();
+        
+        
+        
+        
+        System.out.println("Vendas");
+
+     
+
+
+
+    }//GEN-LAST:event_btn_VendasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -82,5 +254,24 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JPanel Area_Trabalho;
+    private javax.swing.JLabel btn_Cad_Cliente;
+    private javax.swing.JLabel btn_Caixa;
+    private javax.swing.JLabel btn_Fornecedor;
+    private javax.swing.JLabel btn_Trocar_usuario;
+    private javax.swing.JLabel btn_Vendas;
+    private javax.swing.JLabel btn_produto;
+    private javax.swing.JLabel btn_relatorio;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
 }
