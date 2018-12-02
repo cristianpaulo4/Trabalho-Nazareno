@@ -5,7 +5,7 @@
  */
 package Interfaces;
 
-import java.awt.BorderLayout;
+import java.net.URL;
 import javax.swing.ImageIcon;
 
 /**
@@ -19,6 +19,11 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
+        
+        this.setTitle("Sistema de Vendas");
+        
+        
+        
     }
 
     /**
@@ -90,6 +95,11 @@ public class Home extends javax.swing.JFrame {
         jPanel1.add(btn_Cad_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
 
         btn_produto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/cad_produto.png"))); // NOI18N
+        btn_produto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_produtoMouseClicked(evt);
+            }
+        });
         jPanel1.add(btn_produto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
 
         btn_Caixa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/caixa_saida.png"))); // NOI18N
@@ -101,40 +111,40 @@ public class Home extends javax.swing.JFrame {
         btn_relatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/relatorio.png"))); // NOI18N
         jPanel1.add(btn_relatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 20, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Trocar Usuários");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 100, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 100, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Vendas");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Cadastro Produto");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+        jLabel3.setText("Gestor Produto");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Caixa / Saida / Boletos");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Vendedor / Clientes");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Fornecedores");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 100, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 100, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Relatórios");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 100, 90, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 100, 90, -1));
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1329, 130);
@@ -177,47 +187,47 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_VendasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_VendasMouseEntered
-        
-        
-        
-
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_VendasMouseEntered
 
     private void btn_VendasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_VendasMouseExited
-       
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_VendasMouseExited
 
-    
     // Botão Vendas
     private void btn_VendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_VendasMouseClicked
-        //btn_Vendas.setIcon(new ImageIcon(getClass().getResource("fornecedor.png")));
+                   
         Tela_Vendas t_vendas = new Tela_Vendas();
         t_vendas.setSize(1330, 690);
-        //t_vendas.setLocation(5, 5);
-      
-        
+
         Area_Trabalho.removeAll();
         Area_Trabalho.add(t_vendas, CENTER_ALIGNMENT);
         Area_Trabalho.revalidate();
         Area_Trabalho.repaint();
-        
-        
-        
-        
-        System.out.println("Vendas");
-
-     
-
 
 
     }//GEN-LAST:event_btn_VendasMouseClicked
 
+    // Botão de cadastro de produto
+    private void btn_produtoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_produtoMouseClicked
+        Tela_CadProduto cad = new Tela_CadProduto();
+        cad.setSize(1330, 690);
+        //t_vendas.setLocation(5, 5);
+
+        Area_Trabalho.removeAll();
+        Area_Trabalho.add(cad, CENTER_ALIGNMENT);
+        Area_Trabalho.revalidate();
+        Area_Trabalho.repaint();
+
+      
+    }//GEN-LAST:event_btn_produtoMouseClicked
+
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
