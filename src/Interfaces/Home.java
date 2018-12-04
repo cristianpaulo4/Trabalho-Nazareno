@@ -21,8 +21,8 @@ public class Home extends javax.swing.JFrame {
         initComponents();
         
         this.setTitle("Sistema de Vendas");
-        
-        
+        this.setIconImage(null);
+       
         
     }
 
