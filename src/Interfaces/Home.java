@@ -5,7 +5,7 @@
  */
 package Interfaces;
 
-import java.net.URL;
+
 import javax.swing.ImageIcon;
 
 /**
@@ -198,7 +198,9 @@ public class Home extends javax.swing.JFrame {
 
     // Botão Vendas
     private void btn_VendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_VendasMouseClicked
-                   
+        //Selecao();
+        
+        
         Tela_Vendas t_vendas = new Tela_Vendas();
         t_vendas.setSize(1330, 690);
 
@@ -206,6 +208,7 @@ public class Home extends javax.swing.JFrame {
         Area_Trabalho.add(t_vendas, CENTER_ALIGNMENT);
         Area_Trabalho.revalidate();
         Area_Trabalho.repaint();
+        
 
 
     }//GEN-LAST:event_btn_VendasMouseClicked
@@ -214,8 +217,7 @@ public class Home extends javax.swing.JFrame {
     private void btn_produtoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_produtoMouseClicked
         Tela_CadProduto cad = new Tela_CadProduto();
         cad.setSize(1330, 690);
-        //t_vendas.setLocation(5, 5);
-
+        
         Area_Trabalho.removeAll();
         Area_Trabalho.add(cad, CENTER_ALIGNMENT);
         Area_Trabalho.revalidate();
@@ -224,6 +226,29 @@ public class Home extends javax.swing.JFrame {
       
     }//GEN-LAST:event_btn_produtoMouseClicked
 
+    
+    
+        // Imagem seleção
+    
+    private void Selecao (){
+       btn_Vendas.setIcon(new ImageIcon("vendas_selec.png"));
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+        
+    
     
     
     
