@@ -22,6 +22,15 @@ public class Home extends javax.swing.JFrame {
         
         this.setTitle("Sistema de Vendas");
         this.setIconImage(null);
+        
+        
+        Tela_Vendas t_vendas = new Tela_Vendas();
+        t_vendas.setSize(1330, 690);
+
+        Area_Trabalho.removeAll();
+        Area_Trabalho.add(t_vendas, CENTER_ALIGNMENT);
+        Area_Trabalho.revalidate();
+        Area_Trabalho.repaint();
        
         
     }
