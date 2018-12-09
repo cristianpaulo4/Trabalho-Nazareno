@@ -5,7 +5,7 @@
  */
 package Interfaces;
 
-
+import java.awt.Point;
 import javax.swing.ImageIcon;
 
 /**
@@ -14,16 +14,17 @@ import javax.swing.ImageIcon;
  */
 public class Home extends javax.swing.JFrame {
 
+    Point posicao = new Point();
+
     /**
      * Creates new form Home
      */
     public Home() {
         initComponents();
-        
+
         this.setTitle("Sistema de Vendas");
         this.setIconImage(null);
-        
-        
+
         Tela_Vendas t_vendas = new Tela_Vendas();
         t_vendas.setSize(1330, 690);
 
@@ -31,8 +32,7 @@ public class Home extends javax.swing.JFrame {
         Area_Trabalho.add(t_vendas, CENTER_ALIGNMENT);
         Area_Trabalho.revalidate();
         Area_Trabalho.repaint();
-       
-        
+
     }
 
     /**
@@ -45,6 +45,7 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
+        Indicador = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btn_Trocar_usuario = new javax.swing.JLabel();
@@ -73,6 +74,23 @@ public class Home extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
         jPanel2.setPreferredSize(new java.awt.Dimension(1302, 5));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Indicador.setBackground(new java.awt.Color(255, 51, 51));
+        Indicador.setPreferredSize(new java.awt.Dimension(1302, 5));
+
+        javax.swing.GroupLayout IndicadorLayout = new javax.swing.GroupLayout(Indicador);
+        Indicador.setLayout(IndicadorLayout);
+        IndicadorLayout.setHorizontalGroup(
+            IndicadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 160, Short.MAX_VALUE)
+        );
+        IndicadorLayout.setVerticalGroup(
+            IndicadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        jPanel2.add(Indicador, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 50));
+
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 125, 1330, 5);
 
@@ -84,6 +102,11 @@ public class Home extends javax.swing.JFrame {
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         btn_Trocar_usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/troca_usuario.png"))); // NOI18N
+        btn_Trocar_usuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_Trocar_usuarioMouseClicked(evt);
+            }
+        });
         jPanel1.add(btn_Trocar_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 20, -1, -1));
 
         btn_Vendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/vendas.png"))); // NOI18N
@@ -101,7 +124,12 @@ public class Home extends javax.swing.JFrame {
         jPanel1.add(btn_Vendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
         btn_Cad_Cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/clientes.png"))); // NOI18N
-        jPanel1.add(btn_Cad_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
+        btn_Cad_Cliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_Cad_ClienteMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btn_Cad_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, -1, -1));
 
         btn_produto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/cad_produto.png"))); // NOI18N
         btn_produto.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -112,12 +140,27 @@ public class Home extends javax.swing.JFrame {
         jPanel1.add(btn_produto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
 
         btn_Caixa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/caixa_saida.png"))); // NOI18N
+        btn_Caixa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_CaixaMouseClicked(evt);
+            }
+        });
         jPanel1.add(btn_Caixa, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
 
         btn_Fornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/fornecedor.png"))); // NOI18N
+        btn_Fornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_FornecedorMouseClicked(evt);
+            }
+        });
         jPanel1.add(btn_Fornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 20, -1, -1));
 
         btn_relatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/relatorio.png"))); // NOI18N
+        btn_relatorio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_relatorioMouseClicked(evt);
+            }
+        });
         jPanel1.add(btn_relatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 20, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -143,7 +186,7 @@ public class Home extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Vendedor / Clientes");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -197,19 +240,17 @@ public class Home extends javax.swing.JFrame {
 
     private void btn_VendasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_VendasMouseEntered
 
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btn_VendasMouseEntered
 
     private void btn_VendasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_VendasMouseExited
 
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btn_VendasMouseExited
 
     // Botão Vendas
     private void btn_VendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_VendasMouseClicked
-        //Selecao();
-        
-        
+
         Tela_Vendas t_vendas = new Tela_Vendas();
         t_vendas.setSize(1330, 690);
 
@@ -217,51 +258,104 @@ public class Home extends javax.swing.JFrame {
         Area_Trabalho.add(t_vendas, CENTER_ALIGNMENT);
         Area_Trabalho.revalidate();
         Area_Trabalho.repaint();
-        
+
+        posicao = Indicador.getLocation();
+        Point p = new Point(btn_Vendas.getLocation());
+        Animacion.Animacion.mover_izquierda(posicao.x, p.x - 40, 1, 3, Indicador);
 
 
     }//GEN-LAST:event_btn_VendasMouseClicked
 
     // Botão de cadastro de produto
     private void btn_produtoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_produtoMouseClicked
+
         Tela_CadProduto cad = new Tela_CadProduto();
         cad.setSize(1330, 690);
-        
+
         Area_Trabalho.removeAll();
         Area_Trabalho.add(cad, CENTER_ALIGNMENT);
         Area_Trabalho.revalidate();
         Area_Trabalho.repaint();
 
-      
+        posicao = Indicador.getLocation();
+        Point p = new Point(btn_produto.getLocation());
+
+        if (posicao.x < p.x) {
+            Animacion.Animacion.mover_derecha(posicao.x, p.x - 25, 1, 3, Indicador);
+        } else {
+            Animacion.Animacion.mover_izquierda(posicao.x, p.x - 25, 1, 3, Indicador);
+        }
+
+
     }//GEN-LAST:event_btn_produtoMouseClicked
 
-    
-    
-        // Imagem seleção
-    
-    private void Selecao (){
-       btn_Vendas.setIcon(new ImageIcon("vendas_selec.png"));
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }
-    
-    
-    
-    
-    
-        
-    
-    
-    
-    
-    
+    private void btn_Cad_ClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Cad_ClienteMouseClicked
+
+        posicao = Indicador.getLocation();
+        Point p = new Point(btn_Cad_Cliente.getLocation());
+
+        if (posicao.x < p.x) {
+            Animacion.Animacion.mover_derecha(posicao.x, p.x - 25, 1, 3, Indicador);
+        } else {
+            Animacion.Animacion.mover_izquierda(posicao.x, p.x - 25, 1, 3, Indicador);
+        }
+
+
+    }//GEN-LAST:event_btn_Cad_ClienteMouseClicked
+
+    private void btn_CaixaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CaixaMouseClicked
+        posicao = Indicador.getLocation();
+        Point p = new Point(btn_Caixa.getLocation());
+
+        if (posicao.x < p.x) {
+            Animacion.Animacion.mover_derecha(posicao.x, p.x - 25, 1, 3, Indicador);
+        } else {
+            Animacion.Animacion.mover_izquierda(posicao.x, p.x - 25, 1, 3, Indicador);
+        }
+
+
+    }//GEN-LAST:event_btn_CaixaMouseClicked
+
+    private void btn_FornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_FornecedorMouseClicked
+        posicao = Indicador.getLocation();
+        Point p = new Point(btn_Fornecedor.getLocation());
+
+        if (posicao.x < p.x) {
+            Animacion.Animacion.mover_derecha(posicao.x, p.x - 25, 1, 3, Indicador);
+        } else {
+            Animacion.Animacion.mover_izquierda(posicao.x, p.x - 25, 1, 3, Indicador);
+        }
+
+
+    }//GEN-LAST:event_btn_FornecedorMouseClicked
+
+    private void btn_relatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_relatorioMouseClicked
+        posicao = Indicador.getLocation();
+        Point p = new Point(btn_relatorio.getLocation());
+
+        if (posicao.x < p.x) {
+            Animacion.Animacion.mover_derecha(posicao.x, p.x - 25, 1, 3, Indicador);
+        } else {
+            Animacion.Animacion.mover_izquierda(posicao.x, p.x - 25, 1, 3, Indicador);
+        }
+
+
+    }//GEN-LAST:event_btn_relatorioMouseClicked
+
+    private void btn_Trocar_usuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Trocar_usuarioMouseClicked
+
+        posicao = Indicador.getLocation();
+        Point p = new Point(btn_Trocar_usuario.getLocation());
+
+        if (posicao.x < p.x) {
+            Animacion.Animacion.mover_derecha(posicao.x, p.x - 25, 1, 3, Indicador);
+        } else {
+            Animacion.Animacion.mover_izquierda(posicao.x, p.x - 25, 1, 3, Indicador);
+        }
+
+
+    }//GEN-LAST:event_btn_Trocar_usuarioMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -299,6 +393,7 @@ public class Home extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JPanel Area_Trabalho;
+    public javax.swing.JPanel Indicador;
     private javax.swing.JLabel btn_Cad_Cliente;
     private javax.swing.JLabel btn_Caixa;
     private javax.swing.JLabel btn_Fornecedor;
