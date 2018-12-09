@@ -289,8 +289,10 @@ public class Home extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_produtoMouseClicked
 
+    
+    
+    // botão de cadastro de funcionario
     private void btn_Cad_ClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Cad_ClienteMouseClicked
-
         posicao = Indicador.getLocation();
         Point p = new Point(btn_Cad_Cliente.getLocation());
 
@@ -299,6 +301,27 @@ public class Home extends javax.swing.JFrame {
         } else {
             Animacion.Animacion.mover_izquierda(posicao.x, p.x - 25, 1, 3, Indicador);
         }
+        
+        Tela_CadFuncionario cad = new Tela_CadFuncionario();
+        cad.setSize(1330, 690);
+
+        Area_Trabalho.removeAll();
+        Area_Trabalho.add(cad, CENTER_ALIGNMENT);
+        Area_Trabalho.revalidate();
+        Area_Trabalho.repaint();
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 
     }//GEN-LAST:event_btn_Cad_ClienteMouseClicked
