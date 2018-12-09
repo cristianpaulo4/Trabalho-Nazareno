@@ -7,6 +7,7 @@ package Interfaces;
 
 import java.awt.Point;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -63,6 +64,7 @@ public class Home extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
+        jSeparator2 = new javax.swing.JSeparator();
         Area_Trabalho = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,7 +77,7 @@ public class Home extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(1302, 5));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Indicador.setBackground(new java.awt.Color(255, 51, 51));
+        Indicador.setBackground(new java.awt.Color(204, 0, 0));
         Indicador.setPreferredSize(new java.awt.Dimension(1302, 5));
 
         javax.swing.GroupLayout IndicadorLayout = new javax.swing.GroupLayout(Indicador);
@@ -207,11 +209,13 @@ public class Home extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1330, Short.MAX_VALUE)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 1330, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 56, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 54, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel4);
@@ -326,6 +330,7 @@ public class Home extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_Cad_ClienteMouseClicked
 
+    // BOTÃO CAIXA
     private void btn_CaixaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CaixaMouseClicked
         posicao = Indicador.getLocation();
         Point p = new Point(btn_Caixa.getLocation());
@@ -336,9 +341,19 @@ public class Home extends javax.swing.JFrame {
             Animacion.Animacion.mover_izquierda(posicao.x, p.x - 25, 1, 3, Indicador);
         }
 
+        Tela_CaixaSaida cad = new Tela_CaixaSaida();
+        cad.setSize(1330, 690);
 
+        Area_Trabalho.removeAll();
+        Area_Trabalho.add(cad, CENTER_ALIGNMENT);
+        Area_Trabalho.revalidate();
+        Area_Trabalho.repaint();
+        
+        
+        
     }//GEN-LAST:event_btn_CaixaMouseClicked
 
+    // BOTÃO FORNECEDOR
     private void btn_FornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_FornecedorMouseClicked
         posicao = Indicador.getLocation();
         Point p = new Point(btn_Fornecedor.getLocation());
@@ -350,8 +365,23 @@ public class Home extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_btn_FornecedorMouseClicked
+        Tela_CadFornecedor cad = new Tela_CadFornecedor();
+        cad.setSize(1330, 690);
 
+        Area_Trabalho.removeAll();
+        Area_Trabalho.add(cad, CENTER_ALIGNMENT);
+        Area_Trabalho.revalidate();
+        Area_Trabalho.repaint();
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btn_FornecedorMouseClicked
+    
+    // BOTÃO RELATORIO
     private void btn_relatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_relatorioMouseClicked
         posicao = Indicador.getLocation();
         Point p = new Point(btn_relatorio.getLocation());
@@ -362,9 +392,22 @@ public class Home extends javax.swing.JFrame {
             Animacion.Animacion.mover_izquierda(posicao.x, p.x - 25, 1, 3, Indicador);
         }
 
+        Tela_Relatorio cad = new Tela_Relatorio();
+        cad.setSize(1330, 690);
+
+        Area_Trabalho.removeAll();
+        Area_Trabalho.add(cad, CENTER_ALIGNMENT);
+        Area_Trabalho.revalidate();
+        Area_Trabalho.repaint();
+        
+        
+        
+        
 
     }//GEN-LAST:event_btn_relatorioMouseClicked
 
+    
+    // BOTÃO TROCA DE USUARIO
     private void btn_Trocar_usuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Trocar_usuarioMouseClicked
 
         posicao = Indicador.getLocation();
@@ -376,6 +419,16 @@ public class Home extends javax.swing.JFrame {
             Animacion.Animacion.mover_izquierda(posicao.x, p.x - 25, 1, 3, Indicador);
         }
 
+        int op = JOptionPane.showConfirmDialog(null, "Deseja trocar de usuário?");
+        
+        System.out.println(op);
+        
+        if(op == 0){
+            dispose();            
+        }
+        
+        
+        
 
     }//GEN-LAST:event_btn_Trocar_usuarioMouseClicked
 
@@ -435,5 +488,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }
