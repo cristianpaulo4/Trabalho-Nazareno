@@ -70,7 +70,7 @@ public class Tela_CaixaSaida extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                true, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -79,6 +79,7 @@ public class Tela_CaixaSaida extends javax.swing.JPanel {
         });
         jTable1.setAutoscrolls(false);
         jTable1.setRowHeight(150);
+        jTable1.setRowSelectionAllowed(false);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
