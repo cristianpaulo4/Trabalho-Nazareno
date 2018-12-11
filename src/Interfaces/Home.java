@@ -18,9 +18,7 @@ public class Home extends javax.swing.JFrame {
     Point posicao = new Point();
   
 
-    /**
-     * Creates new form Home
-     */
+   
     public Home() {
         initComponents();
 
@@ -34,6 +32,11 @@ public class Home extends javax.swing.JFrame {
         Area_Trabalho.add(t_vendas, CENTER_ALIGNMENT);
         Area_Trabalho.revalidate();
         Area_Trabalho.repaint();
+        
+        // CAIXAR INICIAL
+        String valor_inicial = JOptionPane.showInputDialog("Digite o Valor Inicial");
+        
+        System.out.println(valor_inicial);
 
     }
 

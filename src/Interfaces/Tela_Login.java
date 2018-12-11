@@ -121,9 +121,9 @@ public class Tela_Login extends javax.swing.JFrame {
         
         
         if(usuario.equals("Teste") && senha == 123456){
-            JOptionPane.showMessageDialog(null, "Seja bem-vindo!");               
+            dispose();   
+            JOptionPane.showMessageDialog(null, "Seja bem-vindo!");  
             h.setVisible(true);  
-            dispose();                
         }
         
 
