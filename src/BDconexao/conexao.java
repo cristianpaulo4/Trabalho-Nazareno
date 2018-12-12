@@ -11,7 +11,7 @@ public class conexao {
     private static final String USER = "trabalho-ifpi";
     private static final String PASS = "ifpi@010203";
     
-    public static Connection getConnection(){
+    public  Connection getConnection(){
         try {
             Class.forName(DRIVER);
             JOptionPane.showMessageDialog(null, "ok");

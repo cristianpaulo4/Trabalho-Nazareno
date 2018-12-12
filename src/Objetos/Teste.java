@@ -10,7 +10,7 @@ public class Teste {
         conexao conex = new conexao();
         
         
-        
+        conex.getConnection();
         
         
         
