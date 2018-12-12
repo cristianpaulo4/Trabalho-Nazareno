@@ -51,5 +51,23 @@ public class Gerente extends Endereco{
     }
     
     
+    // metodo cadastrar Gerente
+    
+    public void Cadastrar(){
+        
+        
+        
+        
+        
+    }
+        
+        
+        
+    
+    
+    public void Alterar(){
+        
+    }
+    
     
 }
