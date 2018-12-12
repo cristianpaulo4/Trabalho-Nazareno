@@ -12,7 +12,7 @@ public class conexao {
     private static final String PASS = "ifpi@010203";    
     public Connection con;
     
-    public  Connection getConnection(){
+    public static Connection getConnection(){
         try {
             Class.forName(DRIVER);          
             return DriverManager.getConnection(URL, USER, PASS);
