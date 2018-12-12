@@ -1,22 +1,22 @@
 
 package Interfaces;
 
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
+import javax.swing.JOptionPane;
+import java.sql.*;
 import Objetos.*;
 
 
 public class Tela_CadProduto extends javax.swing.JPanel {
-    
+   
     double valor_total;
     
   
     public Tela_CadProduto() {
-        initComponents();
+        initComponents();      
     }
-
    
+ 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -433,13 +433,12 @@ public class Tela_CadProduto extends javax.swing.JPanel {
        
                 
     }//GEN-LAST:event_btn_ListarActionPerformed
-
+ 
     
     
     // SALVAR PRODUTO
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         Produto pro = new Produto();
-        
         pro.setIdProduto(Integer.parseInt(cxCodigo.getText()));
         pro.setNome(cxNome.getText());
         pro.setQuantidade(Integer.parseInt(cxQuantidade.getText()));
@@ -447,12 +446,12 @@ public class Tela_CadProduto extends javax.swing.JPanel {
         pro.setValor_custo(Double.parseDouble(cxValor_custo.getText()));
         pro.setValor_venda(Double.parseDouble(cxValor_venda.getText()));
         pro.setIdFornecedor(cxFornecedor.getText());
-        
-        pro.Cadastrar(pro);  
+                   
+       pro.Cadastrar(pro);  
 
 
     }//GEN-LAST:event_btnSalvarMouseClicked
-
+      
     
     
     
