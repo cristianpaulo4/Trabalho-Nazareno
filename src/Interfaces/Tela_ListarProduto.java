@@ -184,7 +184,7 @@ public class Tela_ListarProduto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Area_Trabalho;
+    public static javax.swing.JPanel Area_Trabalho;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
