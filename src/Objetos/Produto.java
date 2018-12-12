@@ -8,8 +8,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Produto {
-
     conexao conex = new conexao();
+    
 
     private int idProduto;
     private String nome;
@@ -88,11 +88,10 @@ public class Produto {
     // METODOS CRUD
     // CADASTRAR
     public void Cadastrar(Produto produto) {
-        conex.getConnection();
-
+     
         try {
-            PreparedStatement cad = conex.con.prepareCall("insert into produto (idproduto,nome,quantidade, quant_minimo, validade, valor_venda, valor_custo, Fornecedor) values (?,?,?,?,?,?,?,?)");
-
+            PreparedStatement cad = conex.getConnection().prepareStatement("insert into produto (idproduto,nome,quantidade, quant_minimo,validade, valor_venda, valor_custo, Fornecedor_cnpj) values (?,?,?,?,?,?,?,?)");
+                             
             cad.setInt(1, produto.getIdProduto());
             cad.setString(2, produto.getNome());
             cad.setInt(3, produto.getQuantidade());

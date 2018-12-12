@@ -1,22 +1,17 @@
-
 package Interfaces;
-
 
 import javax.swing.JOptionPane;
 import java.sql.*;
 import Objetos.*;
 
-
 public class Tela_CadProduto extends javax.swing.JPanel {
-   
+
     double valor_total;
-    
-  
+
     public Tela_CadProduto() {
-        initComponents();      
+        initComponents();
     }
-   
- 
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -414,13 +409,9 @@ public class Tela_CadProduto extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
     // BOTÃO PESQUISAR PRODUTO
     private void btn_PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PesquisarActionPerformed
         int codigo = Integer.parseInt(JOptionPane.showInputDialog("Digite o Cógido do Produto:"));
-        
-      
-
 
 
     }//GEN-LAST:event_btn_PesquisarActionPerformed
@@ -428,14 +419,12 @@ public class Tela_CadProduto extends javax.swing.JPanel {
     // BOTÃO DE LISTAR PRODUTOS
     private void btn_ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ListarActionPerformed
         Tela_ListarProduto lista = new Tela_ListarProduto();
-        
+
         lista.setVisible(true);
-       
-                
+
+
     }//GEN-LAST:event_btn_ListarActionPerformed
- 
-    
-    
+
     // SALVAR PRODUTO
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         Produto pro = new Produto();
@@ -443,18 +432,18 @@ public class Tela_CadProduto extends javax.swing.JPanel {
         pro.setNome(cxNome.getText());
         pro.setQuantidade(Integer.parseInt(cxQuantidade.getText()));
         pro.setQuant_minimo(Integer.parseInt(cxQuant_minino.getText()));
+        pro.setValidade(cxData.getText());
         pro.setValor_custo(Double.parseDouble(cxValor_custo.getText()));
         pro.setValor_venda(Double.parseDouble(cxValor_venda.getText()));
         pro.setIdFornecedor(cxFornecedor.getText());
-                   
-       pro.Cadastrar(pro);  
+        pro.Cadastrar(pro);
 
 
+        
+        
+        
     }//GEN-LAST:event_btnSalvarMouseClicked
-      
-    
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Area_Vendas;

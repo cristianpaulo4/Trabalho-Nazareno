@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+
 
 
 
@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Tela_CadFornecedor extends javax.swing.JPanel {
     //cria conexao
-     Connection con = null;
+    Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
 
@@ -37,7 +37,7 @@ public class Tela_CadFornecedor extends javax.swing.JPanel {
     public Tela_CadFornecedor() {
         initComponents();
         
-        con = conexao.getConnection();
+      //  con = conexao.getConnection();
     }
     
      public List<Fornecedor> lista(){
@@ -132,7 +132,8 @@ public class Tela_CadFornecedor extends javax.swing.JPanel {
     }
        
         // metodo para salvar um fornrcedor
-    private void salvar(){
+   
+private void salvar(){
         String sql = "INSERT INTO Fornecedor (cnpj, nome, telefone, cidade, rua, complemento, bairro, numero ) values (?, ?, ?, ?, ?, ?, ?, ?)";
        try {
            pst=con.prepareStatement(sql);
@@ -153,6 +154,8 @@ public class Tela_CadFornecedor extends javax.swing.JPanel {
            
     
     }
+       
+       
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -450,19 +453,18 @@ public class Tela_CadFornecedor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salvarMouseClicked
-        // TODO add your handling code here:
          Fornecedor fornecedor= new Fornecedor();
         salvar();
     }//GEN-LAST:event_salvarMouseClicked
 
     private void deletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletarMouseClicked
-        // TODO add your handling code here:
+       
         Fornecedor fornecedor= new Fornecedor();
         deletar(fornecedor);
     }//GEN-LAST:event_deletarMouseClicked
 
     private void alterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alterarMouseClicked
-        // TODO add your handling code here:
+        
           Fornecedor fornecedor= new Fornecedor();
           editar(fornecedor);
     }//GEN-LAST:event_alterarMouseClicked
@@ -485,13 +487,13 @@ public class Tela_CadFornecedor extends javax.swing.JPanel {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadContato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+     //       java.util.logging.Logger.getLogger(CadContato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadContato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+       //     java.util.logging.Logger.getLogger(CadContato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadContato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         //   java.util.logging.Logger.getLogger(CadContato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadContato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+           // java.util.logging.Logger.getLogger(CadContato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

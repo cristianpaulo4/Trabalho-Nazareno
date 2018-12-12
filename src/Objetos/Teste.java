@@ -7,10 +7,9 @@ public class Teste {
     
     public static void main(String[] args) {
         
-        conexao conex = new conexao();
+      
         
-        
-        conex.getConnection();
+    
         
         
         
