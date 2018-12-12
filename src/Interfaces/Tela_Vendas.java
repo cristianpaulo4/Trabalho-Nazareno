@@ -81,11 +81,11 @@ public class Tela_Vendas extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Produto", "Valor Unitário", "Quantidade", "Total"
+                "Código", "Produto", "Valor Unitário", "Quantidade", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -102,6 +102,7 @@ public class Tela_Vendas extends javax.swing.JPanel {
             Tabela_produtos.getColumnModel().getColumn(1).setResizable(false);
             Tabela_produtos.getColumnModel().getColumn(2).setResizable(false);
             Tabela_produtos.getColumnModel().getColumn(3).setResizable(false);
+            Tabela_produtos.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
