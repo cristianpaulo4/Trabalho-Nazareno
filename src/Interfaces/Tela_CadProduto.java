@@ -428,6 +428,7 @@ public class Tela_CadProduto extends javax.swing.JPanel {
     // SALVAR PRODUTO
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         Produto pro = new Produto();
+        
         pro.setIdProduto(Integer.parseInt(cxCodigo.getText()));
         pro.setNome(cxNome.getText());
         pro.setQuantidade(Integer.parseInt(cxQuantidade.getText()));
