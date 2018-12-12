@@ -1,7 +1,13 @@
 
 package Objetos;
 
+
 public class Produto {
+    
+    
+   
+    
+    
     
     private int idProduto;
     private String nome;
@@ -86,6 +92,15 @@ public class Produto {
     
     // CADASTRAR
     public void Cadastrar(Produto produto){
+     
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
