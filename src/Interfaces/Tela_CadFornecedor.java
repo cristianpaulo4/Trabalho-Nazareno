@@ -37,7 +37,7 @@ public class Tela_CadFornecedor extends javax.swing.JPanel {
     public Tela_CadFornecedor() {
         initComponents();
         
-      //  con = conexao.getConnection();
+     
     }
     
      public List<Fornecedor> lista(){

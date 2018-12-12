@@ -10,7 +10,7 @@ public class conexao {
     private static final String URL = "jdbc:mysql://trabalho-ifpi.mysql.uhserver.com/trabalho_ifpi";
     private static final String USER = "farmacia_ifpi";
     private static final String PASS = "ifpi@010203";    
-    public Connection con;
+    
     
     public  Connection getConnection(){
         try {
