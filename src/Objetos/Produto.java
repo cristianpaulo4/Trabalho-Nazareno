@@ -112,8 +112,35 @@ public class Produto {
     }
 
     // Alterar
-    public void Alterar(Produto produto) {
-
+    public void Alterar(Produto produto, int codigo) {
+        
+        try {
+            PreparedStatement alterar = conex.getConnection().prepareStatement("UPDATE produto SET nome = ?, quantidade = ?, quant_minimo = ?, validade = ?, valor_venda = ?, valor_custo = ?, Fornecedor_cnpj = ? WHERE idproduto=" + codigo);
+            
+            alterar.setString(1, produto.getNome());
+            alterar.setInt(2, produto.getQuantidade());
+            alterar.setInt(3, produto.getQuant_minimo());
+            alterar.setString(4, produto.getValidade());
+            alterar.setDouble(5, produto.getValor_venda());
+            alterar.setDouble(6, produto.getValor_custo());
+            alterar.setString(7, produto.getIdFornecedor());
+                       
+            
+            alterar.execute();
+            
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso");
+            
+            
+        
+        
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Erro ao alterar"+ ex);
+        }
+           
+        
+        
+        
+        
     }
 
     // Pesquisar
@@ -146,9 +173,27 @@ public class Produto {
 
     }
 
+    
+    
+    
+    
+    
     // Excluir
     public void Excluir(int codigo) {
-
+        try {
+            PreparedStatement excluir = conex.getConnection().prepareStatement("delete from codigo where = " + codigo);
+            excluir.execute();            
+            JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
+                  
+            
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null,"Erro ao deletar:" + ex);
+        }
+        
+        
+        
+        
+        
     }
 
 }

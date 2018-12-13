@@ -3,10 +3,15 @@ package Interfaces;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import Objetos.*;
+import com.sun.xml.internal.ws.client.ContentNegotiation;
 
 public class Tela_CadProduto extends javax.swing.JPanel {
 
     double valor_total;
+    Produto produto = new Produto();
+    boolean alterar=true;
+    
+    
 
     public Tela_CadProduto() {
         initComponents();
@@ -123,6 +128,11 @@ public class Tela_CadProduto extends javax.swing.JPanel {
         jLabel13.setText("0000000");
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/EXCLUIR.png"))); // NOI18N
+        jLabel19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel19MouseClicked(evt);
+            }
+        });
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/salvar.png"))); // NOI18N
         btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -132,8 +142,18 @@ public class Tela_CadProduto extends javax.swing.JPanel {
         });
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/cancelar.png"))); // NOI18N
+        jLabel21.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel21MouseClicked(evt);
+            }
+        });
 
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/editar.png"))); // NOI18N
+        jLabel22.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel22MouseClicked(evt);
+            }
+        });
 
         jLabel25.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(102, 102, 102));
@@ -412,10 +432,73 @@ public class Tela_CadProduto extends javax.swing.JPanel {
     // BOTÃO PESQUISAR PRODUTO
     private void btn_PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PesquisarActionPerformed
         int codigo = Integer.parseInt(JOptionPane.showInputDialog("Digite o Cógido do Produto:"));
-
-
+        cxCodigo.setEditable(false);
+        
+               
+        
+        produto=produto.Pesquisar(codigo);        
+        cxCodigo.setText(Integer.toString(produto.getIdProduto()));
+        cxNome.setText(produto.getNome());
+        cxQuantidade.setText(Integer.toString(produto.getQuantidade()));
+        cxQuant_minino.setText(Integer.toString(produto.getQuant_minimo()));
+        cxValor_custo.setText(Double.toString(produto.getValor_custo()));
+        cxValor_venda.setText(Double.toString(produto.getValor_venda()));
+        cxData.setText(produto.getValidade());
+        cxFornecedor.setText(produto.getIdFornecedor());                
+        bloquear(false);
+                       
     }//GEN-LAST:event_btn_PesquisarActionPerformed
 
+    
+    
+    // LIMPAR CAMPOS 
+    public void limpar() {
+        cxCodigo.setText("");
+        cxNome.setText("");
+        cxQuantidade.setText("");
+        cxQuant_minino.setText("");
+        cxValor_custo.setText("");
+        cxValor_venda.setText("");
+        cxData.setText("");
+        cxFornecedor.setText("");
+
+    }
+
+    
+    // ABILITAR CAMPOS    
+    public void bloquear(boolean op){
+        
+        if(op){
+            cxNome.setEditable(true);
+            cxQuantidade.setEditable(true);
+            cxQuant_minino.setEditable(true);
+            cxValor_custo.setEditable(true);
+            cxValor_venda.setEditable(true);         
+            cxData.setEditable(true);
+        }else{
+            cxNome.setEditable(false);
+            cxQuantidade.setEditable(false);
+            cxQuant_minino.setEditable(false);
+            cxValor_custo.setEditable(false);
+            cxValor_venda.setEditable(false);         
+            cxData.setEditable(false);
+                      
+            
+        }
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // BOTÃO DE LISTAR PRODUTOS
     private void btn_ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ListarActionPerformed
         Tela_ListarProduto lista = new Tela_ListarProduto();
@@ -428,7 +511,8 @@ public class Tela_CadProduto extends javax.swing.JPanel {
     // SALVAR PRODUTO
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         Produto pro = new Produto();
-        
+
+        if(alterar){
         pro.setIdProduto(Integer.parseInt(cxCodigo.getText()));
         pro.setNome(cxNome.getText());
         pro.setQuantidade(Integer.parseInt(cxQuantidade.getText()));
@@ -438,12 +522,62 @@ public class Tela_CadProduto extends javax.swing.JPanel {
         pro.setValor_venda(Double.parseDouble(cxValor_venda.getText()));
         pro.setIdFornecedor(cxFornecedor.getText());
         pro.Cadastrar(pro);
+        limpar();
+                        
+        }else{
+        pro.setIdProduto(Integer.parseInt(cxCodigo.getText()));
+        pro.setNome(cxNome.getText());
+        pro.setQuantidade(Integer.parseInt(cxQuantidade.getText()));
+        pro.setQuant_minimo(Integer.parseInt(cxQuant_minino.getText()));
+        pro.setValidade(cxData.getText());
+        pro.setValor_custo(Double.parseDouble(cxValor_custo.getText()));
+        pro.setValor_venda(Double.parseDouble(cxValor_venda.getText()));
+        pro.setIdFornecedor(cxFornecedor.getText());
+                
+        pro.Alterar(pro,Integer.parseInt(cxCodigo.getText()));
+                       
+            
+         alterar = true;
+         limpar();
+        }
+        
+        
+        
+        
 
 
-        
-        
-        
+
     }//GEN-LAST:event_btnSalvarMouseClicked
+
+    // BOTÃO CANCELAR
+    private void jLabel21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel21MouseClicked
+
+        limpar();
+
+
+    }//GEN-LAST:event_jLabel21MouseClicked
+
+    
+    
+    // BOTÃO EDITAR
+    private void jLabel22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseClicked
+        bloquear(true);
+        alterar = false;
+        
+       
+    }//GEN-LAST:event_jLabel22MouseClicked
+
+    
+    // BOTÃO EXCLUIR
+    private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
+        int codigo = Integer.parseInt(cxCodigo.getText());      
+              
+        produto.Excluir(codigo);
+
+
+
+        
+    }//GEN-LAST:event_jLabel19MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
