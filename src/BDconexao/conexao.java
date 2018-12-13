@@ -1,7 +1,7 @@
 package BDconexao;
 
 import java.sql.*;
-import javax.swing.JOptionPane;
+
 
 public class conexao {
 
@@ -10,14 +10,16 @@ public class conexao {
     private static final String USER = "farmacia_ifpi";
     private static final String PASS = "ifpi@010203";
 
-    /* private final String URL = "jdbc:mysql://localhost:3305/trabalho_ifpi";
-    private final String USER = "root";
-    private final String PASS = "";
+   
+ /*private static final String DRIVER = "com.mysql.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://localhost:3305/trabalho_ifpi";
+    private static final String USER = "root";
+    private static final String PASS = "";    
      */
     public Connection getConnection() {
+
         try {
-            Class.forName(DRIVER);
-            // JOptionPane.showMessageDialog(null, "conectado");
+            Class.forName(DRIVER);          
             return DriverManager.getConnection(URL, USER, PASS);
 
         } catch (ClassNotFoundException | SQLException ex) {
