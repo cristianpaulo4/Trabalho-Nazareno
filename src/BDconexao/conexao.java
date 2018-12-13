@@ -21,7 +21,7 @@ public class conexao {
     private static final String PASS = "";    
     */
            
-    public static Connection getConnection(){
+    public Connection getConnection(){
 
         try {
             Class.forName(DRIVER);          
