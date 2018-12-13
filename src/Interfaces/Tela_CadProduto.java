@@ -1,20 +1,18 @@
 package Interfaces;
 
 import javax.swing.JOptionPane;
-import java.sql.*;
 import Objetos.*;
-import com.sun.xml.internal.ws.client.ContentNegotiation;
 
 public class Tela_CadProduto extends javax.swing.JPanel {
-    
+
     double valor_total;
     Produto produto = new Produto();
     boolean alterar = true;
-    
+
     public Tela_CadProduto() {
         initComponents();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -431,8 +429,9 @@ public class Tela_CadProduto extends javax.swing.JPanel {
     private void btn_PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PesquisarActionPerformed
         int codigo = Integer.parseInt(JOptionPane.showInputDialog("Digite o Cógido do Produto:"));
         cxCodigo.setEditable(false);
-        
-        produto = produto.Pesquisar(codigo);        
+
+        produto = produto.Pesquisar(codigo);
+
         cxCodigo.setText(Integer.toString(produto.getIdProduto()));
         cxNome.setText(produto.getNome());
         cxQuantidade.setText(Integer.toString(produto.getQuantidade()));
@@ -440,9 +439,9 @@ public class Tela_CadProduto extends javax.swing.JPanel {
         cxValor_custo.setText(Double.toString(produto.getValor_custo()));
         cxValor_venda.setText(Double.toString(produto.getValor_venda()));
         cxData.setText(produto.getValidade());
-        cxFornecedor.setText(produto.getIdFornecedor());        
+        cxFornecedor.setText(produto.getIdFornecedor());
         bloquear(false);
-        
+
     }//GEN-LAST:event_btn_PesquisarActionPerformed
 
     // LIMPAR CAMPOS 
@@ -455,44 +454,44 @@ public class Tela_CadProduto extends javax.swing.JPanel {
         cxValor_venda.setText("");
         cxData.setText("");
         cxFornecedor.setText("");
-        
+
     }
 
     // ABILITAR CAMPOS    
     public void bloquear(boolean op) {
-        
+
         if (op) {
             cxNome.setEditable(true);
             cxQuantidade.setEditable(true);
             cxQuant_minino.setEditable(true);
             cxValor_custo.setEditable(true);
-            cxValor_venda.setEditable(true);            
+            cxValor_venda.setEditable(true);
             cxData.setEditable(true);
         } else {
             cxNome.setEditable(false);
             cxQuantidade.setEditable(false);
             cxQuant_minino.setEditable(false);
             cxValor_custo.setEditable(false);
-            cxValor_venda.setEditable(false);            
+            cxValor_venda.setEditable(false);
             cxData.setEditable(false);
-            
+
         }
-        
+
     }
 
     // BOTÃO DE LISTAR PRODUTOS
     private void btn_ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ListarActionPerformed
         Tela_ListarProduto lista = new Tela_ListarProduto();
-        
+
         lista.setVisible(true);
-        
+
 
     }//GEN-LAST:event_btn_ListarActionPerformed
 
     // SALVAR PRODUTO
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         Produto pro = new Produto();
-        
+
         if (alterar) {
             pro.setIdProduto(Integer.parseInt(cxCodigo.getText()));
             pro.setNome(cxNome.getText());
@@ -504,7 +503,7 @@ public class Tela_CadProduto extends javax.swing.JPanel {
             pro.setIdFornecedor(cxFornecedor.getText());
             pro.Cadastrar(pro);
             limpar();
-            
+
         } else {
             pro.setIdProduto(Integer.parseInt(cxCodigo.getText()));
             pro.setNome(cxNome.getText());
@@ -514,19 +513,20 @@ public class Tela_CadProduto extends javax.swing.JPanel {
             pro.setValor_custo(Double.parseDouble(cxValor_custo.getText()));
             pro.setValor_venda(Double.parseDouble(cxValor_venda.getText()));
             pro.setIdFornecedor(cxFornecedor.getText());
-            
+
             pro.Alterar(pro, Integer.parseInt(cxCodigo.getText()));
-            
+
             alterar = true;
             limpar();
         }
-        
+
 
     }//GEN-LAST:event_btnSalvarMouseClicked
 
     // BOTÃO CANCELAR
     private void jLabel21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel21MouseClicked
         
+        cxCodigo.setEditable(true);
         bloquear(true);
         limpar();
 
@@ -536,17 +536,17 @@ public class Tela_CadProduto extends javax.swing.JPanel {
     private void jLabel22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseClicked
         bloquear(true);
         alterar = false;
-        
+
 
     }//GEN-LAST:event_jLabel22MouseClicked
 
     // BOTÃO EXCLUIR
     private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
-        int codigo = Integer.parseInt(cxCodigo.getText());      
-        
+        int codigo = Integer.parseInt(cxCodigo.getText());
+
         produto.Excluir(codigo);
         limpar();
-        
+
 
     }//GEN-LAST:event_jLabel19MouseClicked
 

@@ -146,7 +146,8 @@ public class Produto {
     // Pesquisar
     public Produto Pesquisar(int codigo) {
         Produto pro = new Produto();
-
+        boolean existe = true;
+        
         try {
             PreparedStatement pesquisa = conex.getConnection().prepareStatement("select * from produto where idproduto = " + codigo);
             ResultSet res = pesquisa.executeQuery();
@@ -160,13 +161,21 @@ public class Produto {
                 pro.valor_venda = res.getDouble(6);
                 pro.valor_custo = res.getDouble(7);
                 pro.Fornecedor = res.getString(8);
+                
+                existe = false;
 
             }
 
+            if(existe){
+                JOptionPane.showMessageDialog(null, "Produto não existe");
+                
+                
+            }            
+            
             return pro;
-
+            
         } catch (SQLException ex) {
-            Logger.getLogger(Produto.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro ao pesquisar:"+ex);
         }
 
         return null;
@@ -181,7 +190,7 @@ public class Produto {
     // Excluir
     public void Excluir(int codigo) {
         try {
-            PreparedStatement excluir = conex.getConnection().prepareStatement("delete from produto where idproduto=? " + codigo);
+            PreparedStatement excluir = conex.getConnection().prepareStatement("delete from produto where idproduto=" + codigo);
             excluir.execute();
             JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
                   
