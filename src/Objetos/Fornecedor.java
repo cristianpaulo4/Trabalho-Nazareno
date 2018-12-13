@@ -5,20 +5,17 @@
  */
 package Objetos;
 
-/**
- *
- * @author Willam
- */
+
 public class Fornecedor extends Endereco{
-     private int cnpj;
+     private String cnpj;
     private String nome;
     private String telefone;
 
-    public int getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(int cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
