@@ -21,7 +21,7 @@ public class conexao {
     public  Connection getConnection(){
         try {
             Class.forName(DRIVER); 
-            JOptionPane.showMessageDialog(null, "conectado");
+           // JOptionPane.showMessageDialog(null, "conectado");
             return DriverManager.getConnection(URL, USER, PASS);
             
         } catch (ClassNotFoundException | SQLException ex) {

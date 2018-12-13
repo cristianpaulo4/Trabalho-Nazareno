@@ -8,6 +8,13 @@ package Interfaces;
 import java.awt.Point;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import BDconexao.*;
+import javax.swing.JOptionPane;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import Objetos.*;
 
 /**
  *
@@ -16,17 +23,69 @@ import javax.swing.JOptionPane;
 public class Tela_ListarProduto extends javax.swing.JFrame {
 
     Point posicao = new Point();
-  
 
-   
     public Tela_ListarProduto() {
         initComponents();
-
+        listar();
         this.setTitle("Produtos");
         this.setIconImage(null);
 
-               
+    }
+
+    public void listar() {
+        conexao lista = new conexao();
         
+        
+        DefaultTableModel modelo = (DefaultTableModel) tblTodosProdutos.getModel();
+
+        
+        try {
+            PreparedStatement list = lista.getConnection().prepareStatement("select * from produto");
+            ResultSet res = list.executeQuery();
+                       
+                        
+            while (res.next()) {                
+                modelo.addRow(new Object[]{
+                res.getInt(1), res.getString(2), res.getInt(3), res.getInt(4), res.getString(5), res.getDouble(6), res.getDouble(7), res.getString(8)
+                    
+                
+                
+                
+                });
+                
+                
+                
+                
+            }
+            
+            
+            
+            
+            
+             
+                
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Tela_ListarProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -42,10 +101,9 @@ public class Tela_ListarProduto extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         Area_Trabalho = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblTodosProdutos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1158, 865));
         setMinimumSize(new java.awt.Dimension(1158, 865));
         setResizable(false);
         getContentPane().setLayout(null);
@@ -92,12 +150,12 @@ public class Tela_ListarProduto extends javax.swing.JFrame {
         Area_Trabalho.setBackground(new java.awt.Color(255, 255, 255));
         Area_Trabalho.setMaximumSize(new java.awt.Dimension(1160, 680));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblTodosProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Nome", "Quantidade", "Quant.Minima", "Validade", "Valor de Venda", "Valor de Custo", "Fornecedor"
+                "Codigo", "Nome", "Quantidade", "Quant.Minima", "Validade", "Valor de Venda", "Valor de Custo", "Fornecedor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -108,17 +166,17 @@ public class Tela_ListarProduto extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
-            jTable1.getColumnModel().getColumn(7).setResizable(false);
+        tblTodosProdutos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblTodosProdutos);
+        if (tblTodosProdutos.getColumnModel().getColumnCount() > 0) {
+            tblTodosProdutos.getColumnModel().getColumn(0).setResizable(false);
+            tblTodosProdutos.getColumnModel().getColumn(1).setResizable(false);
+            tblTodosProdutos.getColumnModel().getColumn(2).setResizable(false);
+            tblTodosProdutos.getColumnModel().getColumn(3).setResizable(false);
+            tblTodosProdutos.getColumnModel().getColumn(4).setResizable(false);
+            tblTodosProdutos.getColumnModel().getColumn(5).setResizable(false);
+            tblTodosProdutos.getColumnModel().getColumn(6).setResizable(false);
+            tblTodosProdutos.getColumnModel().getColumn(7).setResizable(false);
         }
 
         javax.swing.GroupLayout Area_TrabalhoLayout = new javax.swing.GroupLayout(Area_Trabalho);
@@ -144,8 +202,6 @@ public class Tela_ListarProduto extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-
 
     /**
      * @param args the command line arguments
@@ -192,6 +248,6 @@ public class Tela_ListarProduto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblTodosProdutos;
     // End of variables declaration//GEN-END:variables
 }

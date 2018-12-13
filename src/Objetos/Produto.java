@@ -2,14 +2,15 @@ package Objetos;
 
 import BDconexao.*;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Produto {
+
     conexao conex = new conexao();
-    
 
     private int idProduto;
     private String nome;
@@ -88,10 +89,10 @@ public class Produto {
     // METODOS CRUD
     // CADASTRAR
     public void Cadastrar(Produto produto) {
-     
+
         try {
             PreparedStatement cad = conex.getConnection().prepareStatement("insert into produto (idproduto,nome,quantidade, quant_minimo,validade, valor_venda, valor_custo, Fornecedor_cnpj) values (?,?,?,?,?,?,?,?)");
-                             
+
             cad.setInt(1, produto.getIdProduto());
             cad.setString(2, produto.getNome());
             cad.setInt(3, produto.getQuantidade());
@@ -109,23 +110,39 @@ public class Produto {
         }
 
     }
-    
-    
-    
-    
 
     // Alterar
     public void Alterar(Produto produto) {
 
     }
 
-    // Listar
-    public void Listar() {
-
-    }
-
     // Pesquisar
-    public void Pesquisar(int codigo) {
+    public Produto Pesquisar(int codigo) {
+        Produto pro = new Produto();
+
+        try {
+            PreparedStatement pesquisa = conex.getConnection().prepareStatement("select * from produto where idproduto = " + codigo);
+            ResultSet res = pesquisa.executeQuery();
+
+            while (res.next()) {
+                pro.idProduto = res.getInt(1);
+                pro.nome = res.getString(2);
+                pro.quantidade = res.getInt(3);
+                pro.quant_minimo = res.getInt(4);
+                pro.validade = res.getString(5);
+                pro.valor_venda = res.getDouble(6);
+                pro.valor_custo = res.getDouble(7);
+                pro.Fornecedor = res.getString(8);
+
+            }
+
+            return pro;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Produto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
 
     }
 

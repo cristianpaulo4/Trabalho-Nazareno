@@ -2,7 +2,9 @@
 package Interfaces;
 
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import Objetos.*;
 
 /**
  *
@@ -10,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Tela_Vendas extends javax.swing.JPanel {
     double valor_total;
-
+    int codigo;
     
    
     
@@ -59,7 +61,13 @@ public class Tela_Vendas extends javax.swing.JPanel {
         jLabel1.setText("Vendas");
 
         cxProduto.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        cxProduto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cxProdutoFocusLost(evt);
+            }
+        });
 
+        cxValor.setEditable(false);
         cxValor.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
         cxQuantidade.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
@@ -73,7 +81,6 @@ public class Tela_Vendas extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel4.setText("Quant.");
 
-        Tabela_produtos.setBackground(new java.awt.Color(255, 255, 255));
         Tabela_produtos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         Tabela_produtos.setForeground(new java.awt.Color(51, 51, 51));
         Tabela_produtos.setModel(new javax.swing.table.DefaultTableModel(
@@ -293,22 +300,51 @@ public class Tela_Vendas extends javax.swing.JPanel {
     int quantidade = Integer.parseInt(cxQuantidade.getText());
     double total = valor*quantidade;
     valor_total = valor_total+total;
+    Produto pro = new Produto();
     
-    DefaultTableModel modelo = (DefaultTableModel) Tabela_produtos.getModel();
-        
+    pro = pro.Pesquisar(this.codigo);
+           
+    
+    DefaultTableModel modelo = (DefaultTableModel) Tabela_produtos.getModel();        
     modelo.addRow(new Object[]{
-        produto, valor, quantidade , total        
+       pro.getIdProduto(), pro.getNome(), pro.getValor_venda(),quantidade,total  
+
+
+        
     });
+    
     
     lblTotal.setText(Double.toString(valor_total));
     
     cxProduto.setText("");
     cxQuantidade.setText("");
     cxValor.setText("");
+    
         
         
         
     }//GEN-LAST:event_btnAdiconarMouseClicked
+
+    
+    
+    // pesquisar de produto
+    private void cxProdutoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cxProdutoFocusLost
+        Produto produto = new Produto();
+        int codigo = Integer.parseInt(cxProduto.getText());
+        DefaultTableModel modelo = (DefaultTableModel) Tabela_produtos.getModel();
+        
+        produto = produto.Pesquisar(codigo);
+        
+        this.codigo = produto.getIdProduto();
+        
+        cxProduto.setText(produto.getNome());
+        cxValor.setText(Double.toString(produto.getValor_venda()));
+        
+           
+        
+
+
+    }//GEN-LAST:event_cxProdutoFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
