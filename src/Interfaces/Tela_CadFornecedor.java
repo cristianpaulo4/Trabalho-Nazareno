@@ -17,10 +17,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 
-
-
-
-
 public class Tela_CadFornecedor extends javax.swing.JPanel {
     //cria conexao
     Connection con = null;
@@ -36,7 +32,7 @@ public class Tela_CadFornecedor extends javax.swing.JPanel {
      */
     public Tela_CadFornecedor() {
         initComponents();
-        
+      con = conexao.getConnection();
      
     }
     
@@ -54,14 +50,14 @@ public class Tela_CadFornecedor extends javax.swing.JPanel {
             
             while(rs.next()){
                 Fornecedor forne = new Fornecedor();
-                forne.setCnpj(rs.getInt("cnpj"));
+                forne.setCnpj(rs.getString("cnpj"));
                 forne.setNome(rs.getString("nome"));
                 forne.setTelefone(rs.getString("telefone"));
                 forne.setCidade(rs.getString("cidade"));
-                forne.setRua(rs.getString("rua"));
-                forne.setComplemento(rs.getString("complemento"));
                 forne.setBairro(rs.getString("bairro"));
-                forne.setNumero(rs.getInt("nome"));  
+                forne.setRua(rs.getString("rua"));
+                forne.setNumero(rs.getInt("numero"));
+                forne.setComplemento(rs.getString("complemento"));  
                 
                 fornecedor.add(forne);
             }
@@ -73,7 +69,7 @@ public class Tela_CadFornecedor extends javax.swing.JPanel {
         return fornecedor;
     }
      
-      private void pesquisar(){
+      private void pesquisar(Fornecedor fornecedor){
        String sql = "SELECT * FROM Fornecedor WHERE cnpj = ?";
        try {
            pst = con.prepareStatement(sql);
@@ -97,7 +93,7 @@ public class Tela_CadFornecedor extends javax.swing.JPanel {
    }
     
        private void editar(Fornecedor fornecedor){
-        String sql = "UPDATE Fornecedor SET nome = ?, telefone = ?, cidade = ?, rua = ?, complemento = ?, bairro = ?, numero = ? WHERE cnpj= ?";
+        String sql = "UPDATE Fornecedor SET nome = ?, telefone = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ? WHERE cnpj= ?";
        try {
            pst=con.prepareStatement(sql);
            pst.setString(1, TexNome.getText());
@@ -131,9 +127,8 @@ public class Tela_CadFornecedor extends javax.swing.JPanel {
        }
     }
        
-        // metodo para salvar um fornrcedor
-   
-private void salvar(){
+        // metodo para cadastrar um fornecedor
+    private void salvar(Fornecedor fornecedor){
         String sql = "INSERT INTO Fornecedor (cnpj, nome, telefone, cidade, bairro, rua, numero, complemento ) values (?, ?, ?, ?, ?, ?, ?, ?)";
        try {
            pst=con.prepareStatement(sql);
@@ -190,8 +185,8 @@ private void salvar(){
         TexNumero = new javax.swing.JTextField();
         TexComplemento = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Pesquisar = new javax.swing.JButton();
+        Listar = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1330, 690));
         setMinimumSize(new java.awt.Dimension(1330, 690));
@@ -250,7 +245,7 @@ private void salvar(){
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(0, 456, Short.MAX_VALUE))
+                        .addGap(0, 473, Short.MAX_VALUE))
                     .addComponent(TexNome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,9 +382,14 @@ private void salvar(){
                 .addGap(328, 328, 328))
         );
 
-        jButton1.setText("Pesquisar");
+        Pesquisar.setText("Pesquisar");
+        Pesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PesquisarMouseClicked(evt);
+            }
+        });
 
-        jButton2.setText("Listar");
+        Listar.setText("Listar");
 
         javax.swing.GroupLayout Area_VendasLayout = new javax.swing.GroupLayout(Area_Vendas);
         Area_Vendas.setLayout(Area_VendasLayout);
@@ -412,9 +412,9 @@ private void salvar(){
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(salvar)
                         .addGap(242, 242, 242)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Listar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(Area_VendasLayout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addGroup(Area_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -440,8 +440,8 @@ private void salvar(){
                     .addComponent(cancelar)
                     .addComponent(alterar)
                     .addGroup(Area_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
-                        .addComponent(jButton2)))
+                        .addComponent(Pesquisar)
+                        .addComponent(Listar)))
                 .addContainerGap())
         );
 
@@ -459,7 +459,7 @@ private void salvar(){
 
     private void salvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salvarMouseClicked
          Fornecedor fornecedor= new Fornecedor();
-        salvar();
+        salvar(fornecedor);
     }//GEN-LAST:event_salvarMouseClicked
 
     private void deletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletarMouseClicked
@@ -485,6 +485,12 @@ private void salvar(){
         TexNumero.setText(" ");
         TexComplemento.setText(" ");
     }//GEN-LAST:event_cancelarMouseClicked
+
+    private void PesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PesquisarMouseClicked
+        // TODO add your handling code here:
+        Fornecedor fornecedor = new Fornecedor();
+        pesquisar(fornecedor);
+    }//GEN-LAST:event_PesquisarMouseClicked
 
     
     /**
@@ -526,6 +532,8 @@ private void salvar(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Area_Vendas;
+    private javax.swing.JButton Listar;
+    private javax.swing.JButton Pesquisar;
     private javax.swing.JTextField TexBairro;
     private javax.swing.JFormattedTextField TexCNPJ;
     private javax.swing.JTextField TexCidade;
@@ -537,8 +545,6 @@ private void salvar(){
     private javax.swing.JLabel alterar;
     private javax.swing.JLabel cancelar;
     private javax.swing.JLabel deletar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
