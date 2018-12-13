@@ -1,8 +1,14 @@
 
 package Objetos;
 
+import BDconexao.conexao;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 
 public class Gerente extends Endereco{
+     conexao conex = new conexao();
     
     private int ID_gerente;
     private String nome;
@@ -53,7 +59,23 @@ public class Gerente extends Endereco{
     
     // metodo cadastrar Gerente
     
-    public void Cadastrar(){
+    public void Cadastrar(Gerente gerente){
+          try {
+            PreparedStatement cad = conex.getConnection().prepareStatement("insert into Gerente (id_gerente,nome,cpf, telefone,salario) values (?,?,?,?,?)");
+                             
+            cad.setInt(1, gerente.getID_gerente());
+            cad.setString(2, gerente.getNome());
+            cad.setString(3, gerente.getCpf());
+            cad.setString(4, gerente.getTelefone());
+            cad.setDouble(5, gerente.getSalario());
+   
+            cad.execute();
+            JOptionPane.showMessageDialog(null, "salvo com sucesso");
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao salvar produto:\n" + ex);
+
+        }
         
         
         
@@ -70,4 +92,14 @@ public class Gerente extends Endereco{
     }
     
     
+    
+    // Metodo não utilizado, só para teste
+    
+    public void Status(){
+        System.out.println("Codigo identificador"+this.getID_gerente());
+        System.out.println("Nome do gerente é"+this.getNome());
+        System.out.println("CPF"+this.getCpf());
+        System.out.println("fone para contato"+this.getTelefone());
+        System.out.println("Salario"+this.getSalario());
+    }
 }
