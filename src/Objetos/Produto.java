@@ -181,8 +181,8 @@ public class Produto {
     // Excluir
     public void Excluir(int codigo) {
         try {
-            PreparedStatement excluir = conex.getConnection().prepareStatement("delete from codigo where = " + codigo);
-            excluir.execute();            
+            PreparedStatement excluir = conex.getConnection().prepareStatement("delete from produto where idproduto=? " + codigo);
+            excluir.execute();
             JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
                   
             
