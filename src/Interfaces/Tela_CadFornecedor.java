@@ -97,20 +97,20 @@ public class Tela_CadFornecedor extends javax.swing.JPanel {
    }
     
        private void editar(Fornecedor fornecedor){
-        String sql = "UPDATE Fornecedor SET cnpj = ?, nome = ?, telefone = ?, cidade = ?, rua = ?, complemento = ?, bairro = ?, numero = ? WHERE cnpj= ?";
+        String sql = "UPDATE Fornecedor SET nome = ?, telefone = ?, cidade = ?, rua = ?, complemento = ?, bairro = ?, numero = ? WHERE cnpj= ?";
        try {
            pst=con.prepareStatement(sql);
-           pst.setString(1, TexCNPJ.getText());
-           pst.setString(2, TexNome.getText());
-           pst.setString(3, TexTelefone.getText());
-           pst.setString(4, TexCidade.getText());
+           pst.setString(1, TexNome.getText());
+           pst.setString(2, TexTelefone.getText());
+           pst.setString(3, TexCidade.getText());
+           pst.setString(4, TexBairro.getText());
            pst.setString(5, TexRua.getText());
-           pst.setString(6, TexComplemento.getText());
-           pst.setString(7, TexBairro.getText());
-           pst.setString(8, TexNumero.getText());
+           pst.setString(6, TexNumero.getText());
+           pst.setString(7, TexComplemento.getText());
+           pst.setString(8, TexCNPJ.getText());
            pst.executeUpdate();
            
-           JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!");
+           JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
            } catch (Exception e) {
            JOptionPane.showMessageDialog(null, e);
        }
@@ -125,7 +125,7 @@ public class Tela_CadFornecedor extends javax.swing.JPanel {
            pst.setString(1, TexCNPJ.getText());
            pst.executeUpdate();
            
-           JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!");
+           JOptionPane.showMessageDialog(null, "Deletado com sucesso!");
            } catch (Exception e) {
            JOptionPane.showMessageDialog(null, e);
        }
@@ -134,17 +134,17 @@ public class Tela_CadFornecedor extends javax.swing.JPanel {
         // metodo para salvar um fornrcedor
    
 private void salvar(){
-        String sql = "INSERT INTO Fornecedor (cnpj, nome, telefone, cidade, rua, complemento, bairro, numero ) values (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Fornecedor (cnpj, nome, telefone, cidade, bairro, rua, numero, complemento ) values (?, ?, ?, ?, ?, ?, ?, ?)";
        try {
            pst=con.prepareStatement(sql);
            pst.setString(1, TexCNPJ.getText());
            pst.setString(2, TexNome.getText());
            pst.setString(3, TexTelefone.getText());
            pst.setString(4, TexCidade.getText());
-           pst.setString(5, TexRua.getText());
-           pst.setString(6, TexComplemento.getText());
-           pst.setString(7, TexBairro.getText());
-           pst.setString(8, TexNumero.getText());
+           pst.setString(5, TexBairro.getText());
+           pst.setString(6, TexRua.getText());
+           pst.setString(7, TexNumero.getText());
+           pst.setString(8, TexComplemento.getText());
            pst.executeUpdate();
            
            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!");
@@ -175,7 +175,7 @@ private void salvar(){
         jLabel6 = new javax.swing.JLabel();
         TexTelefone = new javax.swing.JFormattedTextField();
         TexCNPJ = new javax.swing.JFormattedTextField();
-        jLabel21 = new javax.swing.JLabel();
+        cancelar = new javax.swing.JLabel();
         alterar = new javax.swing.JLabel();
         deletar = new javax.swing.JLabel();
         salvar = new javax.swing.JLabel();
@@ -250,7 +250,7 @@ private void salvar(){
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(0, 473, Short.MAX_VALUE))
+                        .addGap(0, 456, Short.MAX_VALUE))
                     .addComponent(TexNome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,7 +276,12 @@ private void salvar(){
                 .addGap(493, 493, 493))
         );
 
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/cancelar.png"))); // NOI18N
+        cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/cancelar.png"))); // NOI18N
+        cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarMouseClicked(evt);
+            }
+        });
 
         alterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/imagens/editar.png"))); // NOI18N
         alterar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -401,7 +406,7 @@ private void salvar(){
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(alterar)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel21)
+                        .addComponent(cancelar)
                         .addGap(18, 18, 18)
                         .addComponent(deletar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -432,7 +437,7 @@ private void salvar(){
                 .addGroup(Area_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(salvar)
                     .addComponent(deletar)
-                    .addComponent(jLabel21)
+                    .addComponent(cancelar)
                     .addComponent(alterar)
                     .addGroup(Area_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton1)
@@ -468,6 +473,18 @@ private void salvar(){
           Fornecedor fornecedor= new Fornecedor();
           editar(fornecedor);
     }//GEN-LAST:event_alterarMouseClicked
+
+    private void cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMouseClicked
+        // TODO add your handling code here:
+        TexCNPJ.setText(" ");
+        TexNome.setText(" ");
+        TexTelefone.setText(" ");
+        TexCidade.setText(" ");
+        TexBairro.setText(" ");
+        TexRua.setText(" ");
+        TexNumero.setText(" ");
+        TexComplemento.setText(" ");
+    }//GEN-LAST:event_cancelarMouseClicked
 
     
     /**
@@ -518,13 +535,13 @@ private void salvar(){
     private javax.swing.JTextField TexRua;
     private javax.swing.JFormattedTextField TexTelefone;
     private javax.swing.JLabel alterar;
+    private javax.swing.JLabel cancelar;
     private javax.swing.JLabel deletar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
