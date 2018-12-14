@@ -11,8 +11,9 @@ import javax.swing.JOptionPane;
 
 public class Vendas {
     
-    conexao con = new conexao();
+    private conexao con = new conexao();
     
+    private int codFuncionario;
     private String data;
     private double valor_total;
 
@@ -36,10 +37,10 @@ public class Vendas {
     
     public  void valor_Total(Vendas pro){
         try {
-            PreparedStatement valor = con.getConnection().prepareStatement("insert into vendas (data,valor_total) values (?,?)");
+            PreparedStatement valor = con.getConnection().prepareStatement("insert into vendas (data,valor_total, idVendedor) values (?,?, ?)");
             valor.setString(1, pro.getData());
             valor.setDouble(2, pro.getValor_total());
-            
+            valor.setInt(3, 123);
             valor.execute();
             
             JOptionPane.showMessageDialog(null, "Venda salva");
@@ -53,6 +54,22 @@ public class Vendas {
         
         
         
+    }
+
+    public conexao getCon() {
+        return con;
+    }
+
+    public void setCon(conexao con) {
+        this.con = con;
+    }
+
+    public int getCodFuncionario() {
+        return codFuncionario;
+    }
+
+    public void setCodFuncionario(int codFuncionario) {
+        this.codFuncionario = codFuncionario;
     }
     
     

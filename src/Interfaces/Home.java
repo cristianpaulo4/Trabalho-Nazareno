@@ -8,6 +8,11 @@ package Interfaces;
 import java.awt.Point;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import BDconexao.*;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,7 +41,15 @@ public class Home extends javax.swing.JFrame {
         // CAIXAR INICIAL
         String valor_inicial = JOptionPane.showInputDialog("Digite o Valor Inicial");
         
-        System.out.println(valor_inicial);
+        double valor_inicial1 = Double.parseDouble(valor_inicial);
+        
+        caixa(valor_inicial1);
+        
+        
+        
+        
+        
+        
 
     }
 
@@ -235,6 +248,52 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
+    // Caixa 
+    public void caixa(double v){
+        conexao con = new conexao();
+        
+        try {
+            
+            PreparedStatement c = con.getConnection().prepareStatement("insert into caixa(Valor_inicial, Total_de_Vendas, Total_de_Saida) values (?,?,?)");
+            c.setDouble(1, 0);
+            c.setDouble(2, 0);
+            c.setDouble(3, 0);            
+            c.execute();
+                       
+            PreparedStatement caixa = con.getConnection().prepareStatement("UPDATE caixa SET Valor_inicial ="+v+"WHERE idCaixa =1");
+            caixa.execute();
+            
+            /*
+            PreparedStatement caixa = con.getConnection().prepareStatement("delete from caixa WHERE idCaixa =1");
+            caixa.execute();*/
+            
+            
+            JOptionPane.showMessageDialog(null, "Caixa inicializado");
+            
+        
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Erro ao inicializar caixa\n"+ ex);
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 
     private void btn_VendasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_VendasMouseEntered
 

@@ -405,8 +405,8 @@ public class Tela_CadFuncionario extends javax.swing.JPanel {
     private void txtSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSalvarMouseClicked
         Vendedor vendedor = new Vendedor();
         Gerente gerente = new Gerente();
-        
-        if(!"Vendedor".equals(cxCargo)){
+       
+        if(cxCargo.equals("Gerente")){
             
             gerente.setID_gerente(Integer.parseInt(txtCodigo.getText()));
             gerente.setNome(txtNome.getText());
@@ -432,7 +432,7 @@ public class Tela_CadFuncionario extends javax.swing.JPanel {
            vendedor.setComplemento(txtComplemento.getText());
            vendedor.setNumero(Integer.parseInt(txtNumero.getText()));
            vendedor.setRua(txtRua.getText());
-            vendedor.CadastrarV(vendedor);
+           vendedor.CadastrarV(vendedor);
          
         }
         
