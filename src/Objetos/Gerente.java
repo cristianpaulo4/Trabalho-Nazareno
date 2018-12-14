@@ -61,9 +61,8 @@ public class Gerente extends Endereco{
     
     public void Cadastrar(Gerente gerente){
           try {
-            PreparedStatement cad = conex.getConnection().prepareStatement("insert into gerente "
-                    + "(idgerente,nome,cpf, telefone,salario,cidade,bairro,rua,numero,complemento) "
-                    + "values (?,?,?,?,?)");
+            PreparedStatement cad = conex.getConnection().prepareStatement("insert into gerente (idgerente,nome,cpf, telefone,salario,cidade,bairro,rua,numero,complemento) values (?,?,?,?,?,?,?,?,?,?)");
+                    
                              
             cad.setInt(1, gerente.getID_gerente());
             cad.setString(2, gerente.getNome());

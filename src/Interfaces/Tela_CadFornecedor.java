@@ -32,7 +32,10 @@ public class Tela_CadFornecedor extends javax.swing.JPanel {
      */
     public Tela_CadFornecedor() {
         initComponents();
+
      // con = conexao.getConnection();
+
+      //con = conexao.getConnection();
      
     }
     
@@ -478,14 +481,14 @@ public class Tela_CadFornecedor extends javax.swing.JPanel {
 
     private void cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMouseClicked
         // TODO add your handling code here:
-        TexCNPJ.setText(" ");
-        TexNome.setText(" ");
-        TexTelefone.setText(" ");
-        TexCidade.setText(" ");
-        TexBairro.setText(" ");
-        TexRua.setText(" ");
-        TexNumero.setText(" ");
-        TexComplemento.setText(" ");
+        TexCNPJ.setText("");
+        TexNome.setText("");
+        TexTelefone.setText("");
+        TexCidade.setText("");
+        TexBairro.setText("");
+        TexRua.setText("");
+        TexNumero.setText("");
+        TexComplemento.setText("");
     }//GEN-LAST:event_cancelarMouseClicked
 
     private void PesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PesquisarMouseClicked
