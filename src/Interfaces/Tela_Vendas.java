@@ -1,40 +1,28 @@
+
 package Interfaces;
 
-import BDconexao.conexao;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Objetos.*;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 
 /**
  *
  * @author bx
  */
 public class Tela_Vendas extends javax.swing.JPanel {
-
     double valor_total;
     int codigo;
     
-    conexao con = new conexao();
-    Date data = new Date();
+   
     
-    SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");    
-    String dataformatada = formatar.format(data);
     
-    int contador;
-
-    Produto[] Vet_produto = new Produto[200];
-
     public Tela_Vendas() {
         initComponents();
-       
-
+        
     }
 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -137,11 +125,6 @@ public class Tela_Vendas extends javax.swing.JPanel {
 
         jButton1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jButton2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jButton2.setText("Finalizar");
@@ -303,114 +286,65 @@ public class Tela_Vendas extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    // dar baixar no estoque
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Produto produto = new Produto();
-
-        for (int i = 1; i < 200; i++) {
-
-            int c = Vet_produto[i].getIdProduto();
-            produto = produto.Pesquisar(c);
-
-            int total = produto.getQuantidade() - Vet_produto[i].getQuantidade();
-            String to = Integer.toString(total);
-
-            try {
-                PreparedStatement sub = con.getConnection().prepareStatement("update produto set quantidade =" + total + " where idproduto =" + produto.getIdProduto());
-                sub.execute();
-                JOptionPane.showMessageDialog(null, "Finalizado");
-                limpar();
-                
-                
-                
-                
-                Vendas v = new Vendas();
-                v.setData(dataformatada);
-                v.setValor_total(Double.parseDouble(lblTotal.getText()));
-                
-                v.valor_Total(v);
-                
-                lblTotal.setText("0.00");
-
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao dar baixa no produto" + ex);
-
-            }
-
-        }
-
         
-       
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    // limpar tabela
-    private void limpar() {
-        DefaultTableModel modelo = (DefaultTableModel) Tabela_produtos.getModel();
-        modelo.setNumRows(0);
-                
-
-    }
-
+    
+    
+    
     // Adionar Produto
     private void btnAdiconarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdiconarMouseClicked
-        contador++;
+    String produto = cxProduto.getText();
+    double valor = Double.parseDouble(cxValor.getText());
+    int quantidade = Integer.parseInt(cxQuantidade.getText());
+    double total = valor*quantidade;
+    valor_total = valor_total+total;
+    Produto pro = new Produto();
+    
+    pro = pro.Pesquisar(this.codigo);
+           
+    
+    DefaultTableModel modelo = (DefaultTableModel) Tabela_produtos.getModel();        
+    modelo.addRow(new Object[]{
+       pro.getIdProduto(), pro.getNome(), pro.getValor_venda(),quantidade,total  
 
-        String produto = cxProduto.getText();
-        double valor = Double.parseDouble(cxValor.getText());
-        int quantidade = Integer.parseInt(cxQuantidade.getText());
-        double total = valor * quantidade;
-        valor_total = valor_total + total;
-        Produto pro = new Produto();
 
-        pro = pro.Pesquisar(this.codigo);
-
-        DefaultTableModel modelo = (DefaultTableModel) Tabela_produtos.getModel();
-        modelo.addRow(new Object[]{
-            pro.getIdProduto(), pro.getNome(), pro.getValor_venda(), quantidade, total
-
-        });
-
-        lblTotal.setText(Double.toString(valor_total));
-
-        Vet_produto[contador] = new Produto();
-
-        Vet_produto[contador].setIdProduto(codigo);
-        Vet_produto[contador].setQuantidade(Integer.parseInt(cxQuantidade.getText()));
-
-        this.Vet_produto[contador].setIdProduto(codigo);
-
-        cxProduto.setText("");
-        cxQuantidade.setText("");
-        cxValor.setText("");
-
+        
+    });
+    
+    
+    lblTotal.setText(Double.toString(valor_total));
+    
+    cxProduto.setText("");
+    cxQuantidade.setText("");
+    cxValor.setText("");
+    
+        
+        
+        
     }//GEN-LAST:event_btnAdiconarMouseClicked
 
+    
     
     // pesquisar de produto
     private void cxProdutoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cxProdutoFocusLost
         Produto produto = new Produto();
         int codigo = Integer.parseInt(cxProduto.getText());
         DefaultTableModel modelo = (DefaultTableModel) Tabela_produtos.getModel();
-
+        
         produto = produto.Pesquisar(codigo);
-
+        
         this.codigo = produto.getIdProduto();
-
+        
         cxProduto.setText(produto.getNome());
         cxValor.setText(Double.toString(produto.getValor_venda()));
+        
+           
+        
 
 
     }//GEN-LAST:event_cxProdutoFocusLost
-
-    
-    
-    // cancelar comprar
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        limpar();
-
-
-       
-    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

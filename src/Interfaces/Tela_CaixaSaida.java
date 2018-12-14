@@ -5,32 +5,21 @@
  */
 package Interfaces;
 
-import BDconexao.conexao;
-import static Interfaces.Home.Area_Trabalho;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import Objetos.*;
-import static java.awt.Component.CENTER_ALIGNMENT;
 
 /**
  *
  * @author bx
  */
 public class Tela_CaixaSaida extends javax.swing.JPanel {
-
+    
     double valor_total;
-       
     
     /**
      * Creates new form Vendas
      */
     public Tela_CaixaSaida() {
         initComponents();
-        caixaInicial();
-
     }
 
     /**
@@ -46,10 +35,10 @@ public class Tela_CaixaSaida extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cxSaida = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaCaixa = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
 
@@ -66,20 +55,15 @@ public class Tela_CaixaSaida extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setText("Lançar Saída");
 
-        cxSaida.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
         jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton2.setText("Lançar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
 
-        tabelaCaixa.setFont(new java.awt.Font("Dialog", 0, 72)); // NOI18N
-        tabelaCaixa.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setFont(new java.awt.Font("Dialog", 0, 72)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null}
             },
             new String [] {
                 "Valor Inicial", "Valor Total", "Valor Saida"
@@ -93,15 +77,15 @@ public class Tela_CaixaSaida extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tabelaCaixa.setAutoscrolls(false);
-        tabelaCaixa.setRowHeight(150);
-        tabelaCaixa.setRowSelectionAllowed(false);
-        tabelaCaixa.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tabelaCaixa);
-        if (tabelaCaixa.getColumnModel().getColumnCount() > 0) {
-            tabelaCaixa.getColumnModel().getColumn(0).setResizable(false);
-            tabelaCaixa.getColumnModel().getColumn(1).setResizable(false);
-            tabelaCaixa.getColumnModel().getColumn(2).setResizable(false);
+        jTable1.setAutoscrolls(false);
+        jTable1.setRowHeight(150);
+        jTable1.setRowSelectionAllowed(false);
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jButton3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -123,7 +107,7 @@ public class Tela_CaixaSaida extends javax.swing.JPanel {
                             .addComponent(jLabel2)
                             .addGroup(Area_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Area_VendasLayout.createSequentialGroup()
-                                    .addComponent(cxSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jButton2)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -148,7 +132,7 @@ public class Tela_CaixaSaida extends javax.swing.JPanel {
                     .addGroup(Area_VendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton2)
                         .addComponent(jButton3))
-                    .addComponent(cxSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
@@ -168,86 +152,12 @@ public class Tela_CaixaSaida extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-   
     
-// lança saldo
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        conexao con = new conexao();
-       
-
-        try {
-        double inicial = 0;
-        double totalSaida = Double.parseDouble(cxSaida.getText());
-        double saida = 0;
-                        
-            
-            PreparedStatement to = con.getConnection().prepareStatement("select Total_de_Saida from caixa where idCaixa =1");
-            ResultSet res = to.executeQuery();
-            
-            while (res.next()) {                
-                valor_total +=res.getDouble("Total_de_Saida");
-            }
-            
-            
-
-            PreparedStatement cx = con.getConnection().prepareStatement("UPDATE caixa SET Total_de_Saida = " + totalSaida + "where idCaixa =1");
-            cx.execute();
-
-            DefaultTableModel modelo = (DefaultTableModel) tabelaCaixa.getModel();
-            modelo.addRow(new Object[]{
-                inicial, saida, totalSaida
-
-            });
-
-            Tela_CaixaSaida cad = new Tela_CaixaSaida();
-            cad.setSize(1330, 690);
-
-            Area_Trabalho.removeAll();
-            Area_Trabalho.add(cad, CENTER_ALIGNMENT);
-            Area_Trabalho.revalidate();
-            Area_Trabalho.repaint();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao inicializar caixa\n" + ex);
-        }
-
-
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    // CAIXA INICIAL 
-    public void caixaInicial() {
-        conexao con = new conexao();
-        double inicial = 0;
-        double total = 0;
-        double saida = 0;
-        try {
-
-            PreparedStatement cx = con.getConnection().prepareStatement("select * from caixa where idCaixa =1");
-            ResultSet res = cx.executeQuery();
-
-            while (res.next()) {
-                inicial = res.getDouble(2);
-                total = res.getDouble(3);
-                saida = res.getDouble(4);
-
-            };
-
-            DefaultTableModel modelo = (DefaultTableModel) tabelaCaixa.getModel();
-            modelo.addRow(new Object[]{
-                inicial, total, saida
-
-            });
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao inicializar caixa\n" + ex);
-        }
-
-    }
-
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Area_Vendas;
-    private javax.swing.JTextField cxSaida;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -255,6 +165,7 @@ public class Tela_CaixaSaida extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable tabelaCaixa;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

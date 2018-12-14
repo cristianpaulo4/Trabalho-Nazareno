@@ -3,7 +3,10 @@ package Objetos;
 
 import BDconexao.conexao;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 
@@ -61,8 +64,7 @@ public class Gerente extends Endereco{
     
     public void Cadastrar(Gerente gerente){
           try {
-            PreparedStatement cad = conex.getConnection().prepareStatement("insert into gerente (idgerente,nome,cpf, telefone,salario,cidade,bairro,rua,numero,complemento) values (?,?,?,?,?,?,?,?,?,?)");
-                    
+            PreparedStatement cad = conex.getConnection().prepareStatement("insert into gerente values (?,?,?,?,?,?,?,?,?,?);");
                              
             cad.setInt(1, gerente.getID_gerente());
             cad.setString(2, gerente.getNome());
@@ -97,8 +99,8 @@ public class Gerente extends Endereco{
         
         try {
             PreparedStatement alterar = conex.getConnection().prepareStatement("UPDATE "
-                    + "gerente SET nome=?, cpf=?, telefone=?, salario=?, cidade=?, bairro=?, rua=?, numero=?, complemento=?"
-                    + " WHERE id_gerente=" + codigo);
+                    + "gerente SET nome=?, cpf = ?, telefone = ?, salario = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ?"
+                    + " WHERE idgerente=" + codigo);
             
             alterar.setString(1, gerente.getNome());
             alterar.setString(2, gerente.getCpf());
@@ -109,12 +111,13 @@ public class Gerente extends Endereco{
             alterar.setString(7, gerente.getRua());
             alterar.setInt(8, gerente.getNumero());
             alterar.setString(9, gerente.getComplemento());
+            
    
           
       
             alterar.execute();
             
-            JOptionPane.showMessageDialog(null, "Alterado com sucesso");
+            JOptionPane.showMessageDialog(null, "Gerente Alterado com sucesso");
             
         
         } catch (SQLException ex) {
@@ -129,12 +132,6 @@ public class Gerente extends Endereco{
         
     
     // Metodo não utilizado, só para teste
-    
-    public void Status(){
-        System.out.println("Codigo identificador"+this.getID_gerente());
-        System.out.println("Nome do gerente é"+this.getNome());
-        System.out.println("CPF"+this.getCpf());
-        System.out.println("fone para contato"+this.getTelefone());
-        System.out.println("Salario"+this.getSalario());
-    }
+     
+  
 }

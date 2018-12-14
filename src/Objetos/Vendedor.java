@@ -92,9 +92,8 @@ public class Vendedor extends Endereco {
     
      public void CadastrarV(Vendedor ven){
           try {
-            PreparedStatement cad = conex.getConnection().prepareStatement("insert into vendedor "
-                    + "(idvendedor,nome, cpf, telefone, salario, cidade, bairro, rua, numero, complemento) "
-                    + "values( ?,?,?,?,?,?,?,?,?,?)\");");
+            PreparedStatement cad = conex.getConnection().prepareStatement("insert into vendedor values ( ?, ?, ?, ?, ?, ?, ?, ?, ? , ?);");
+            
             cad.setInt(1, ven.getIdVendedor());
             cad.setString(2, ven.getNome());
             cad.setString(3, ven.getCpf());
@@ -103,8 +102,8 @@ public class Vendedor extends Endereco {
             cad.setString(6, ven.getCidade());
             cad.setString(7, ven.getBairro());
             cad.setString(8, ven.getRua());
-            cad.setInt(8, ven.getNumero());
-            cad.setString(8, ven.getComplemento());
+            cad.setInt(9, ven.getNumero());
+            cad.setString(10, ven.getComplemento());
             
             
    
@@ -130,7 +129,7 @@ public class Vendedor extends Endereco {
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 Vendedor vendedor = new Vendedor();
-                vendedor.setIdVendedor(rs.getInt("IdVendedor"));
+                vendedor.setIdVendedor(rs.getInt("Idvendedor"));
                 vendedor.setNome(rs.getString("nome"));
                 vendedor.setCpf(rs.getString("cpf"));
                 vendedor.setTelefone(rs.getString("telefone"));
@@ -177,9 +176,9 @@ public class Vendedor extends Endereco {
         //java.sql.Connection con = new Connection().getConnection();
       
         try {
-            PreparedStatement stmt = conex.getConnection().prepareStatement( "UPDATE vendedor set nome=?, cpf=?, telefone=?, salario=?, cidade=?, bairro=?, rua=?, numero=?, complemento=? WHERE idvendedor=" +id);
+            PreparedStatement stmt = conex.getConnection().prepareStatement( "UPDATE vendedor set nome=?, cpf=?, telefone=?, salario=?, cidade=?, bairro=?, rua=?, numero=?, complemento=? WHERE idvendedor= " +id );
                 
-        
+            
             stmt.setString(1, vendedor.getNome());
             stmt.setString(2, vendedor.getCpf());
             stmt.setString(3, vendedor.getTelefone());
@@ -189,14 +188,14 @@ public class Vendedor extends Endereco {
             stmt.setString(7, vendedor.getRua());
             stmt.setInt(8, vendedor.getNumero());
             stmt.setString(9, vendedor.getComplemento());
-            stmt.setInt(10, vendedor.getIdVendedor());
+        
             stmt.execute();
             
-               JOptionPane.showMessageDialog(null, "Alterado com sucesso");
+               JOptionPane.showMessageDialog(null, "Vendedor Alterado com sucesso");
             //stmt.close();
             
         } catch (SQLException e) {
-          JOptionPane.showMessageDialog(null,"Erro ao alterar"+ e);
+          JOptionPane.showMessageDialog(null,"Erro ao alterar "+ e);
       }
     }
 
@@ -218,10 +217,11 @@ public class Vendedor extends Endereco {
         boolean existe = true;
         
         try {
-            PreparedStatement pesquisa = conex.getConnection().prepareStatement("select * from vendedor where idvendedor = " + id);
+            PreparedStatement pesquisa = conex.getConnection().prepareStatement("select * from vendedor where idvendedor = " + id );
             ResultSet res = pesquisa.executeQuery();
 
             while (res.next()) {
+               
                 vend.idvendedor = res.getInt(1);
                 vend.nome = res.getString(2);
                 vend.cpf = res.getString(3);
@@ -232,7 +232,7 @@ public class Vendedor extends Endereco {
                 vend.setRua(res.getString(8));
                 vend.setNumero(res.getInt(9));
                 vend.setComplemento(res.getString(10));
-                
+                JOptionPane.showMessageDialog(null, "Pesquisado");  
                 existe = false;
             }
 

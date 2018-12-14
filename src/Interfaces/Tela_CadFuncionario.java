@@ -10,12 +10,14 @@ import BDconexao.conexao;
 import Objetos.Fornecedor;
 import Objetos.Gerente;
 import Objetos.Vendedor;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 
@@ -30,7 +32,7 @@ public class Tela_CadFuncionario extends javax.swing.JPanel {
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-
+     conexao cone=new conexao();
     
   
     
@@ -39,6 +41,20 @@ public class Tela_CadFuncionario extends javax.swing.JPanel {
      */
     public Tela_CadFuncionario() {
         initComponents();
+    }
+    
+     
+    private void limpar (){
+         txtCodigo.setText("");
+         txtNome.setText("");
+         txtCpf.setText("");
+         txtSalario.setText("");
+         txtTelefone.setText("");
+         txtBairro.setText("");
+         txtCidade.setText("");
+         txtComplemento.setText("");
+         txtNumero.setText("");
+         txtRua.setText("");
     }
 
     /**
@@ -405,8 +421,8 @@ public class Tela_CadFuncionario extends javax.swing.JPanel {
     private void txtSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSalvarMouseClicked
         Vendedor vendedor = new Vendedor();
         Gerente gerente = new Gerente();
-       
-        if(cxCargo.equals("Gerente")){
+        
+         if(cxCargo.getSelectedItem().toString().equals("Gerente")){
             
             gerente.setID_gerente(Integer.parseInt(txtCodigo.getText()));
             gerente.setNome(txtNome.getText());
@@ -425,27 +441,27 @@ public class Tela_CadFuncionario extends javax.swing.JPanel {
            vendedor.setIdVendedor(Integer.parseInt(txtCodigo.getText()));
            vendedor.setNome(txtNome.getText());
            vendedor.setCpf(txtCpf.getText());
+           vendedor.setTelefone(txtTelefone.getText());  
            vendedor.setSalario(Double.parseDouble(txtSalario.getText()));
-           vendedor.setTelefone(txtTelefone.getText());
-           vendedor.setBairro(txtBairro.getText());
            vendedor.setCidade(txtCidade.getText());
-           vendedor.setComplemento(txtComplemento.getText());
-           vendedor.setNumero(Integer.parseInt(txtNumero.getText()));
+           vendedor.setBairro(txtBairro.getText());
            vendedor.setRua(txtRua.getText());
-           vendedor.CadastrarV(vendedor);
+           vendedor.setNumero(Integer.parseInt(txtNumero.getText()));
+           vendedor.setComplemento(txtComplemento.getText());
+            vendedor.CadastrarV(vendedor);
          
         }
         
-        
+        limpar();
     }//GEN-LAST:event_txtSalvarMouseClicked
 
     private void txtEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEditarMouseClicked
         Vendedor vendedor = new Vendedor();
         Gerente gerente = new Gerente();
-        int cod= Integer.parseInt(txtCodigo.getText());
+       int cod= Integer.parseInt(txtCodigo.getText());
+    
         
-        
-        if(!"Vendedor".equals(cxCargo)){
+        if(cxCargo.getSelectedItem().toString().equals("Gerente")){
             gerente.setID_gerente(Integer.parseInt(txtCodigo.getText()));
             gerente.setNome(txtNome.getText());
             gerente.setCpf(txtCpf.getText());
@@ -456,8 +472,9 @@ public class Tela_CadFuncionario extends javax.swing.JPanel {
             gerente.setComplemento(txtComplemento.getText());
             gerente.setNumero(Integer.parseInt(txtNumero.getText()));
             gerente.setRua(txtRua.getText());
-           
-            gerente.Alterar(gerente,cod);
+            
+           JOptionPane.showInputDialog("Gerente");
+           gerente.Alterar(gerente,cod);
         }
         else{
             vendedor.setIdVendedor(Integer.parseInt(txtCodigo.getText()));
@@ -470,34 +487,29 @@ public class Tela_CadFuncionario extends javax.swing.JPanel {
            vendedor.setComplemento(txtComplemento.getText());
            vendedor.setNumero(Integer.parseInt(txtNumero.getText()));
            vendedor.setRua(txtRua.getText());
-          vendedor.Alterar(vendedor, cod);
+           JOptionPane.showInputDialog("Vendedor");
+          vendedor.Alterar(vendedor,cod);
         
         }
+        limpar();
     }//GEN-LAST:event_txtEditarMouseClicked
 
     private void txtExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtExcluirMouseClicked
      int cod= Integer.parseInt(txtCodigo.getText());
      Vendedor ven= new Vendedor();
      ven.Deletar(cod);
+     limpar();
     }//GEN-LAST:event_txtExcluirMouseClicked
 
     private void txtCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCancelarMouseClicked
-         txtCodigo.setText("");
-         txtNome.setText("");
-         txtCpf.setText("");
-         txtSalario.setText("");
-         txtTelefone.setText("");
-         txtBairro.setText("");
-         txtCidade.setText("");
-         txtComplemento.setText("");
-         txtNumero.setText("");
-         txtRua.setText("");
+        limpar();
     }//GEN-LAST:event_txtCancelarMouseClicked
 
     private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
-         int codigo = Integer.parseInt(JOptionPane.showInputDialog("Digite o Cógido do Produto:"));
+         int codigo = Integer.parseInt(JOptionPane.showInputDialog("Digite o Cógido do Vendedor:"));
          Vendedor ven= new Vendedor();
-         ven.Pesquisar(codigo);
+        
+        ven=ven.Pesquisar(codigo);
          
          txtCodigo.setText(Integer.toString(ven.getIdVendedor()));
          txtNome.setText(ven.getNome());
@@ -514,8 +526,11 @@ public class Tela_CadFuncionario extends javax.swing.JPanel {
 
     private void listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarActionPerformed
       Tela_ListarFuncionario1 lista = new Tela_ListarFuncionario1();
-
-        lista.setVisible(true);
+          
+ 
+       lista.setVisible(true);
+ 
+  
     }//GEN-LAST:event_listarActionPerformed
 
     
