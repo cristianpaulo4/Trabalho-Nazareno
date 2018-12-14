@@ -6,15 +6,11 @@
 package Interfaces;
 
 import java.awt.Point;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import BDconexao.*;
-import javax.swing.JOptionPane;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import Objetos.*;
 
 /**
  *
@@ -36,19 +32,17 @@ public class Tela_ListarFuncionario1 extends javax.swing.JFrame {
         conexao lista = new conexao();
         
         
-        DefaultTableModel modelo = (DefaultTableModel) tblTodosProdutos.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tblFuncionario.getModel();
 
         
         try {
-            PreparedStatement list = lista.getConnection().prepareStatement("select * from vendedor");
+            PreparedStatement list = lista.getConnection().prepareStatement("select * from gerente");
             ResultSet res = list.executeQuery();
-                       
                         
             while (res.next()) {                
                 modelo.addRow(new Object[]{
                 res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getDouble(5), res.getString(6), res.getString(7), res.getString(8), res.getInt(9), res.getString(10)
                     
-                
                 
                 
                 });
@@ -101,7 +95,7 @@ public class Tela_ListarFuncionario1 extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         Area_Trabalho = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblTodosProdutos = new javax.swing.JTable();
+        tblFuncionario = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1158, 865));
@@ -150,34 +144,35 @@ public class Tela_ListarFuncionario1 extends javax.swing.JFrame {
         Area_Trabalho.setBackground(new java.awt.Color(255, 255, 255));
         Area_Trabalho.setMaximumSize(new java.awt.Dimension(1160, 680));
 
-        tblTodosProdutos.setModel(new javax.swing.table.DefaultTableModel(
+        tblFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Codigo", "Nome", "CPF", "Telefone", "Salário", "Cidade", "Bairro", "Rua", "Complemento"
+                "Codigo", "Nome", "CPF", "Telefone", "Salário", "Cidade", "Bairro", "Rua", "Numero", "Complemento"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblTodosProdutos.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tblTodosProdutos);
-        if (tblTodosProdutos.getColumnModel().getColumnCount() > 0) {
-            tblTodosProdutos.getColumnModel().getColumn(0).setResizable(false);
-            tblTodosProdutos.getColumnModel().getColumn(1).setResizable(false);
-            tblTodosProdutos.getColumnModel().getColumn(2).setResizable(false);
-            tblTodosProdutos.getColumnModel().getColumn(3).setResizable(false);
-            tblTodosProdutos.getColumnModel().getColumn(4).setResizable(false);
-            tblTodosProdutos.getColumnModel().getColumn(5).setResizable(false);
-            tblTodosProdutos.getColumnModel().getColumn(6).setResizable(false);
-            tblTodosProdutos.getColumnModel().getColumn(7).setResizable(false);
-            tblTodosProdutos.getColumnModel().getColumn(8).setResizable(false);
+        tblFuncionario.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblFuncionario);
+        if (tblFuncionario.getColumnModel().getColumnCount() > 0) {
+            tblFuncionario.getColumnModel().getColumn(0).setResizable(false);
+            tblFuncionario.getColumnModel().getColumn(1).setResizable(false);
+            tblFuncionario.getColumnModel().getColumn(2).setResizable(false);
+            tblFuncionario.getColumnModel().getColumn(3).setResizable(false);
+            tblFuncionario.getColumnModel().getColumn(4).setResizable(false);
+            tblFuncionario.getColumnModel().getColumn(5).setResizable(false);
+            tblFuncionario.getColumnModel().getColumn(6).setResizable(false);
+            tblFuncionario.getColumnModel().getColumn(7).setResizable(false);
+            tblFuncionario.getColumnModel().getColumn(8).setResizable(false);
+            tblFuncionario.getColumnModel().getColumn(9).setResizable(false);
         }
 
         javax.swing.GroupLayout Area_TrabalhoLayout = new javax.swing.GroupLayout(Area_Trabalho);
@@ -251,6 +246,6 @@ public class Tela_ListarFuncionario1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable tblTodosProdutos;
+    private javax.swing.JTable tblFuncionario;
     // End of variables declaration//GEN-END:variables
 }
