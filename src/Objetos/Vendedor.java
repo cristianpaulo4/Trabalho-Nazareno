@@ -64,13 +64,13 @@ public class Vendedor extends Endereco {
         this.salario = salario;
     }
     
-       public void Adicionar(Vendedor vendedor) throws SQLException{
-        //java.sql.Connection con = new Connection().getConnection();
+      /* public void Adicionar(Vendedor vendedor) throws SQLException{
+       
        
         try {
             PreparedStatement stmt = conex.getConnection().prepareStatement( "insert into vendedor(nome, cpf, telefone, salario, cidade, bairro, rua, numero, complemento) values( ?,?,?,?,?,?,?,?,?)");
              
-           // stmt.setInt(1, vendedor.getIdVendedor());
+            stmt.setInt(1, vendedor.getIdVendedor());
             stmt.setString(1, vendedor.getNome());
             stmt.setString(2, vendedor.getCpf());
             stmt.setString(3, vendedor.getTelefone());
@@ -81,13 +81,46 @@ public class Vendedor extends Endereco {
             stmt.setInt(8, vendedor.getNumero());
             stmt.setString(9, vendedor.getComplemento());
             stmt.execute();
-           // stmt.close();
+            stmt.close();
             System.out.println("Gravado");
           
         } catch (SQLException e) {
              JOptionPane.showMessageDialog(null, "Erro ao salvar vendedor!" + e);
         } 
  }
+    */
+    
+     public void CadastrarV(Vendedor ven){
+          try {
+            PreparedStatement cad = conex.getConnection().prepareStatement("insert into vendedor "
+                    + "(idvendedor,nome, cpf, telefone, salario, cidade, bairro, rua, numero, complemento) "
+                    + "values( ?,?,?,?,?,?,?,?,?,?)\");");
+            cad.setInt(1, ven.getIdVendedor());
+            cad.setString(2, ven.getNome());
+            cad.setString(3, ven.getCpf());
+            cad.setString(4, ven.getTelefone());
+            cad.setDouble(5, ven.getSalario());
+            cad.setString(6, ven.getCidade());
+            cad.setString(7, ven.getBairro());
+            cad.setString(8, ven.getRua());
+            cad.setInt(8, ven.getNumero());
+            cad.setString(8, ven.getComplemento());
+            
+            
+   
+            cad.execute();
+            JOptionPane.showMessageDialog(null, "salvo com sucesso");
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao salvar produto:\n" + ex);
+
+        }
+        
+        
+        
+        
+        
+    }
     
     public List <Vendedor> getListar(){
         try {

@@ -61,13 +61,20 @@ public class Gerente extends Endereco{
     
     public void Cadastrar(Gerente gerente){
           try {
-            PreparedStatement cad = conex.getConnection().prepareStatement("insert into Gerente (id_gerente,nome,cpf, telefone,salario) values (?,?,?,?,?)");
+            PreparedStatement cad = conex.getConnection().prepareStatement("insert into gerente "
+                    + "(idgerente,nome,cpf, telefone,salario,cidade,bairro,rua,numero,complemento) "
+                    + "values (?,?,?,?,?)");
                              
             cad.setInt(1, gerente.getID_gerente());
             cad.setString(2, gerente.getNome());
             cad.setString(3, gerente.getCpf());
             cad.setString(4, gerente.getTelefone());
             cad.setDouble(5, gerente.getSalario());
+            cad.setString(6, gerente.getCidade());
+            cad.setString(7, gerente.getBairro());
+            cad.setString(8, gerente.getRua());
+            cad.setInt(9, gerente.getNumero());
+            cad.setString(10, gerente.getComplemento());
    
             cad.execute();
             JOptionPane.showMessageDialog(null, "salvo com sucesso");
@@ -85,13 +92,42 @@ public class Gerente extends Endereco{
         
         
         
+    // alterar
     
-    
-    public void Alterar(){
+    public void Alterar(Gerente gerente, int codigo){
+        
+        try {
+            PreparedStatement alterar = conex.getConnection().prepareStatement("UPDATE "
+                    + "gerente SET nome=?, cpf=?, telefone=?, salario=?, cidade=?, bairro=?, rua=?, numero=?, complemento=?"
+                    + " WHERE id_gerente=" + codigo);
+            
+            alterar.setString(1, gerente.getNome());
+            alterar.setString(2, gerente.getCpf());
+            alterar.setString(3, gerente.getTelefone());
+            alterar.setDouble(4, gerente.getSalario());
+            alterar.setString(5, gerente.getCidade());
+            alterar.setString(6, gerente.getBairro());
+            alterar.setString(7, gerente.getRua());
+            alterar.setInt(8, gerente.getNumero());
+            alterar.setString(9, gerente.getComplemento());
+   
+          
+      
+            alterar.execute();
+            
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso");
+            
+        
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Erro ao alterar"+ ex);
+        }
+           
+        
+        
+        
         
     }
-    
-    
+        
     
     // Metodo não utilizado, só para teste
     
