@@ -346,6 +346,27 @@ public class Tela_Vendas extends javax.swing.JPanel {
 
     }//GEN-LAST:event_cxProdutoFocusLost
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Area_Vendas;

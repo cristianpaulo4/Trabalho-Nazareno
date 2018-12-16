@@ -85,8 +85,7 @@ public class Gerente extends Endereco{
 
         }
         
-        
-        
+                
         
         
     }

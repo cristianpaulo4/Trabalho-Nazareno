@@ -69,7 +69,6 @@ public class Home extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1328, 881));
         setMinimumSize(new java.awt.Dimension(1328, 881));
-        setResizable(false);
         getContentPane().setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
@@ -230,7 +229,7 @@ public class Home extends javax.swing.JFrame {
         getContentPane().add(Area_Trabalho);
         Area_Trabalho.setBounds(0, 130, 1330, 680);
 
-        pack();
+        setSize(new java.awt.Dimension(1338, 895));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -296,6 +295,7 @@ public class Home extends javax.swing.JFrame {
             Animacion.Animacion.mover_derecha(posicao.x, p.x - 25, 1, 3, Indicador);
         } else {
             Animacion.Animacion.mover_izquierda(posicao.x, p.x - 25, 1, 3, Indicador);
+            
         }
 
         Tela_CadFuncionario cad = new Tela_CadFuncionario();
